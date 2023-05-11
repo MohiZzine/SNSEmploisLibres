@@ -30,7 +30,7 @@ La sécurité des données des utilisateurs est garantie. Les informations perso
 
 ## 🚀 **Améliorations futures**
 
-- [ ] Rendez-vous en ligne
+- Rendez-vous en ligne
 
 - Historique des travaux
 
