@@ -1,0 +1,10 @@
+input::placeholder {
+  font-style: italic;
+  font-weight: 200;
+  padding-right: 20px;
+  transform: skewX(-5deg);
+}
+
+button#login {
+  width: 75%;
+}
