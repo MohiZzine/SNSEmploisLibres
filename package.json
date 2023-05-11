@@ -1,0 +1,24 @@
+{
+  "name": "snsemploislibres",
+  "version": "1.0.0",
+  "description": "SNS pour les emplois libres est une application web qui facilite la recherche d'artisans pour réaliser des travaux de maison. Elle met en relation les résidents d'une ville avec des artisans qualifiés et fiables pour chaque type de travaux (plomberie, électricité, maçonnerie, peinture, etc.). L'application est développée avec PHP et WAMP Server.",
+  "main": "index.js",
+  "scripts": {
+    "build": "tailwindcss -i ./input.css -o ./styles/main.css",
+    "watch": "tailwindcss -i ./input.css -o ./styles/main.css --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MohiZzine/SNSEmploisLibres.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MohiZzine/SNSEmploisLibres/issues"
+  },
+  "homepage": "https://github.com/MohiZzine/SNSEmploisLibres#readme",
+  "devDependencies": {
+    "tailwindcss": "^3.3.2"
+  }
+}

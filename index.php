@@ -1,7 +1,10 @@
 <?php $title = "Home"; ?>
-<?php if (isset($_SESSION['user'])) {
-  include_once('includes/header.php');
+
+<?php if (!isset($_SESSION['user'])) {
+  header('Location: views/login.php');
 } else {
-  header('Location: login.php');
+  include_once('includes/header.php');
 }
 ?>
+</head>
+
