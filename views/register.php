@@ -4,11 +4,11 @@
 <link rel="stylesheet" href="../styles/login.css">
 </head>
 
-<header id="nav_bar">
-  <?php include_once('../includes/navbar.php') ?>
-</header>
+<body class="font-inter text-white bg-gray-700 min-h-screen">
+  <header id="nav_bar">
+    <?php include_once('../includes/navbar.php') ?>
+  </header>
 
-<body>
   <section id="register" class="container mx-auto h-full flex flex-col items-center justify-center gap-6">
     <h1 class="uppercase p-4 text-center text-3xl mt-28">REGISTER</h1>
     <form action="../db/register.php" method="post" class="w-full max-w-md flex flex-col items-center justify-center gap-4">
@@ -17,6 +17,5 @@
       <button type="submit" id="register" name="register" class="w-1/2 uppercase rounded-sm bg-green-500 text-white font-bold font-lg p-1.5 px-3 border-transparent hover:bg-green-600 hover:text-gray-200">Register</button>
     </form>
   </section>
-
 
   <?php include_once('../includes/footer.php'); ?>

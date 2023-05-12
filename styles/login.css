@@ -14,6 +14,10 @@ button#login {
   width: 75%;
 }
 
+button#register {
+  width: 75%;
+}
+
 #recovery {
   width: 75%;
 }
