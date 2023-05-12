@@ -122,4 +122,3 @@ CREATE TABLE IF NOT EXISTS Reviews (
   FOREIGN KEY (user_id) REFERENCES Users(user_id),
   FOREIGN KEY (artisan_id) REFERENCES Artisans(artisan_id)
 );
-
