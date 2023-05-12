@@ -5,6 +5,15 @@ input::placeholder {
   transform: skewX(-5deg);
 }
 
+#recovery {
+  width: 20px;
+  height: 30px;
+}
+
 button#login {
+  width: 75%;
+}
+
+#recovery {
   width: 75%;
 }
