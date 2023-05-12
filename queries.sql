@@ -88,7 +88,7 @@ CREATE TABLE IF NOT EXISTS payments (
   FOREIGN KEY (quote_id) REFERENCES Quotes(quote_id)
 );
 
-CREATE TABLE Messages (
+CREATE TABLE IF NOT EXISTS Messages (
   message_id INT,
   user_id INT,
   artisan_id INT,
@@ -101,7 +101,7 @@ CREATE TABLE Messages (
   FOREIGN KEY (request_id) REFERENCES Requests(request_id)
 );
 
-CREATE TABLE Notifications (
+CREATE TABLE IF NOT EXISTS Notifications (
   notification_id INT,
   user_id INT,
   message TEXT NOT NULL,
@@ -111,7 +111,7 @@ CREATE TABLE Notifications (
   FOREIGN KEY (user_id) REFERENCES Users(user_id)
 );
 
-CREATE TABLE Reviews (
+CREATE TABLE IF NOT EXISTS Reviews (
   review_id INT,
   user_id INT,
   artisan_id INT,
