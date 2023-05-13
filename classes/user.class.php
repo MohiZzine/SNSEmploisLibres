@@ -49,21 +49,17 @@ class User
     $this->role = $role;
   }
 
-  public function register_user()
+  public function register()
   {
     $sql = "INSERT INTO users(username, name, email, password, role) VALUES(:username, :name, :email, :password, :role";
-
     $stmt = $this->conn->prepare($sql);
-
-    $this->username = htmlspecialchars(strip_tags($this->username));
-    $this->name = htmlspecialchars(strip_tags($this->name));
-    $this->email = htmlspecialchars(strip_tags($this->email));
-    $this->password = htmlspecialchars(strip_tags($this->password));
 
     $hashed_password = password_hash($this->password, PASSWORD_BCRYPT_DEFAULT_COST);
 
     if ($stmt->execute(['username' => $this->username, 'name' => $this->name, 'email' => $this->email, 'password' => $hashed_password, 'role' => $this->role])) {
-      return true;
+      // Get user_id from the database
+
+      return $this->conn->lastInsertId();
     }
     return false;
   }
@@ -73,9 +69,6 @@ class User
     $sql = "SELECT * FROM users WHERE username = :username";
 
     $stmt = $this->conn->prepare($sql);
-
-    $username = htmlspecialchars(strip_tags($this->username));
-    $password = htmlspecialchars(strip_tags($this->password));
 
     $stmt->execute(['username' => $username]);
     $result = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -95,7 +88,7 @@ class User
     $sql = "UPDATE users SET password = :password WHERE user_id = :user_id";
 
     $stmt = $this->conn->prepare($sql);
-    $new_password = htmlspecialchars(strip_tags($new_password));
+    $new_password = $new_password;
     $new_hashed_password = password_hash($new_password, PASSWORD_BCRYPT);
     try {
       $stmt->execute(['password' => $new_password, 'user_id' => $this->user_id]);

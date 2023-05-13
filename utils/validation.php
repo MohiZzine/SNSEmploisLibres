@@ -36,3 +36,13 @@ function valid_password($password)
   // - Is at least 6 characters long
   return preg_match('/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{6,}$/', $password);
 }
+
+// function valid_role($role) {
+
+// }
+
+function valid_confirm_password($password, $confirm_password)
+{
+  // Checks if the password and confirm password fields match
+  return $confirm_password === $password;
+}
