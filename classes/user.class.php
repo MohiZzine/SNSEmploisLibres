@@ -1,5 +1,7 @@
 <?php
 
+require_once '../utils/database.php';
+
 class User
 {
   private $user_id;
@@ -8,10 +10,14 @@ class User
   private $email;
   private $password;
   private $role;
+  private $conn;
 
-  public function __construct($db)
+  // Now I need to add a constructor to the class to initialize the database connection
+  // Knowing I created a file in the utils folder called database.php where I have the connection to the database
+  public function __construct()
   {
-    // $this->conn = $db;
+    global $conn;
+    $this->conn = $conn;
   }
 
   public function setAttributes($username, $name, $email, $password, $role)
@@ -36,6 +42,11 @@ class User
   private function set_password($new_password)
   {
     $this->password = $new_password;
+  }
+
+  private function set_role($role)
+  {
+    $this->role = $role;
   }
 
   public function register_user()
@@ -88,9 +99,9 @@ class User
     $new_hashed_password = password_hash($new_password, PASSWORD_BCRYPT);
     try {
       $stmt->execute(['password' => $new_password, 'user_id' => $this->user_id]);
-      $stmt->set_password($new_password);
+      $this->set_password($new_password);
 
-      return ['reset' => true, 'message' => 'Password alrady exists!'];
+      return ['reset' => true, 'message' => 'Password already exists!'];
     } catch (PDOException $e) {
       if ($e->getCode() === 23000) {
         return ['reset' => false, 'message' => 'Password already exists!'];
@@ -104,7 +115,7 @@ class User
   {
     $sql = "UPDATE users SET username = :username WHERE user_id = :user_id";
 
-    $stmt = $this->conn->prepare();
+    $stmt = $this->conn->prepare($sql);
 
     $new_username = htmlspecialchars(strip_tags($new_username));
     try {
