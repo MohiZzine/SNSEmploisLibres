@@ -1,0 +1,31 @@
+.transparent-auto-fill:-webkit-autofill,
+.transparent-auto-fill:-webkit-autofill:hover,
+.transparent-auto-fill:-webkit-autofill:focus,
+.transparent-auto-fill:-webkit-autofill:active {
+  -webkit-box-shadow: 0 0 0 30px inherit inset !important;
+  -webkit-text-fill-color: inherit !important;
+}
+
+input::placeholder {
+  font-style: italic;
+  font-weight: 200;
+  padding-right: 20px;
+  transform: skewX(-5deg);
+}
+
+#recovery {
+  width: 20px;
+  height: 30px;
+}
+
+button#login {
+  width: 75%;
+}
+
+button#register {
+  width: 75%;
+}
+
+#recovery {
+  width: 75%;
+}

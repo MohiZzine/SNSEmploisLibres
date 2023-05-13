@@ -6,19 +6,14 @@
 
 function valid_username($username)
 {
-  // Checks if the username:
-  // - Contains only letters and numbers
-  // - Is at least 6 characters long
-  return preg_match('/^[a-zA-Z0-9]{6,}$/', $username);
+  $result = preg_match('/^[a-zA-Z0-9]{4,}$/u', $username);
+  return $result;
 }
 
-function valid_name($name)
+function valid_full_name($name)
 {
-  // Checks if the name: 
-  // - Contains only letters 
-  // - And is at least 2 characters long
-
-  return preg_match('/^[a-zA-Z]{2,}$/', $name);
+  $result = preg_match('/^[\p{L}\s]{2,}$/u', $name);
+  return $result;
 }
 
 function valid_email($email)

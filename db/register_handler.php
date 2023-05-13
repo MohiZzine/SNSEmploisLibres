@@ -2,8 +2,8 @@
 
 require_once '../utils/validation.php';
 
-$username = $name = $email = $password = $role = "";
-$username_err = $name_err = $email_err = $password_err = $role_err = "";
+$username = $full_name = $email = $password = $role = "";
+$username_err = $full_name_err = $email_err = $password_err = $role_err = "";
 
 if (isset($_POST['register'])) {
   $errors = array();
@@ -17,12 +17,13 @@ if (isset($_POST['register'])) {
   }
 
   // Validate name
-  if (!valid_name(trim($_POST['name']))) {
-    $name_err = "Name should not be empty!";
-    $errors['name'] = 'name=' . $name_err;
+  if (!valid_full_name(trim($_POST['full_name']))) {
+    $full_name_err = "Name should not be empty!";
+    $errors['full_name'] = 'name=' . $full_name_err;
   } else {
-    $name = htmlspecialchars(strip_tags(trim($_POST['name'])));
+    $full_name = htmlspecialchars(strip_tags(trim($_POST['full_name'])));
   }
+
 
   // Validate name
   if (!valid_email(trim($_POST['email']))) {
@@ -55,34 +56,43 @@ if (isset($_POST['register'])) {
   } else {
     $confirm_password = htmlspecialchars(strip_tags(trim($_POST['confirm_password'])));
   }
-}
 
-if (!empty($errors)) {
-  $errors_string = implode('&', $errors);
-  header('Location: ../views/register.php?' . $errors_string);
+  if (!empty($errors)) {
+    print_r($_POST);
+    print_r($errors);
+    echo empty($errors) ? "Yes" : "No";
+    exit();
+    $errors_string = implode('&', $errors);
+    header('Location: ../views/register.php?' . $errors_string);
+    exit();
+  }
+
+  // include '../utils/database.php';
+  include_once '../classes/database.class.php';
+  include_once '../classes/user.class.php';
+
+  $db = new Database();
+  $db->getConnection();
+  $user = new User($db->pdo);
+
+  $user->setAttributes($username, $full_name, $email, $password, $role);
+  $register = $user->register();
+
+  if (!$register) {
+    $error = "Username not registered!";
+    header('Location: ../views/register.php?error=' . $error);
+    exit();
+  }
+
+  session_start();
+  $_SESSION['user_id'] = $register;
+  $_SESSION['username'] = $username;
+  $_SESSION['full_name'] = $full_name;
+  $_SESSION['user_email'] = $email;
+  $_SESSION['user_role'] = $role;
+  header('Location: ../index.php');
   exit();
-}
-
-include '../utils/database.php';
-$user = new User($conn);
-
-$user->setAttributes($username, $name, $email, $password, $role);
-$register = $user->register();
-
-if (!$register) {
-  $error = "Username not registered!";
-  header('Location: ../views/register.php?error=' . $error);
-  exit();
-}
-
-session_start();
-$_SESSION['user_id'] = $register;
-$_SESSION['username'] = $username;
-$_SESSION['name'] = $name;
-$_SESSION['user_email'] = $email;
-$_SESSION['user_role'] = $role;
-header('Location: ../index.php');
-exit();
+}  
 
 
 
