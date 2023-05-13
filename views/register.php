@@ -19,8 +19,7 @@
       <input type="confirm_password" name="confirm_password" id="confirm_password" placeholder="Password Confirmation" class="placeholder-italic placeholder-white bg-transparent border-b-2 font-3xl pr-28 py-2 border-white text-md focus:border-b-2 focus:outline-none">
       <button type="submit" name="register" id="register" class="w-1/2 uppercase rounded-sm bg-green-500 text-white font-bold font-lg p-1.5 px-3 border-transparent hover:bg-green-600 hover:text-gray-200">Register</button>
       <div id="recovery" class="flex items-center justify-between gap-4 text-center">
-        <p class="text-sm mx-6"><a href="login.php" class="hover:cursor-pointer hover:text-gray-500">Sign Up</a></p>
-        <p class="text-sm mx-6"><a href="forgot_password.php" class="hover:cursor-pointer hover:text-gray-500">Forgot Password</a></p>
+        <p class="text-sm mx-6"><a href="login.php" class="hover:cursor-pointer hover:text-gray-500">Sign In</a></p>
       </div>
     </form>
   </section>

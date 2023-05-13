@@ -1,5 +1,5 @@
-CREATE DATABASE IF NOT EXISTS 'sns';
-USE 'sns';
+CREATE DATABASE IF NOT EXISTS sns;
+USE sns;
 
 CREATE TABLE IF NOT EXISTS users (
   user_id INT NOT NULL AUTO_INCREMENT,
@@ -14,8 +14,8 @@ CREATE TABLE IF NOT EXISTS users (
 CREATE TABLE IF NOT EXISTS artisans (
   artisan_id INT AUTO_INCREMENT,
   user_id INT NOT NULL,
-  company_name VARCHAR(255) UNIQUE NOT NULL,
-  company_address VARCHAR(255) UNIQUE NOT NULL,
+  company_name VARCHAR(80) UNIQUE NOT NULL,
+  company_address VARCHAR(175) UNIQUE NOT NULL,
   description TEXT NOT NULL,
   profile_picture VARCHAR(255) NOT NULL,
   PRIMARY KEY (artisan_id),
@@ -34,7 +34,7 @@ CREATE TABLE IF NOT EXISTS artisan_services (
   service_id INT,
   PRIMARY KEY (artisan_id, service_id),
   FOREIGN KEY (artisan_id) REFERENCES artisans(artisan_id),
-  FOREIGN KEY (service_id) REGERENCES services(service_id)
+  FOREIGN KEY (service_id) REFERENCES services(service_id)
 );
 
 CREATE TABLE IF NOT EXISTS availabilities (
@@ -52,9 +52,9 @@ CREATE TABLE IF NOT EXISTS requests (
   user_id INT,
   service_id INT,
   description TEXT,
-  date_requested DATE NOT NULL DEFAULT CURRENT_DATE,
+  date_requested TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
   status VARCHAR(10) NOT NULL DEFAULT 'pending',
-  location VARCHAR(255) NOT NULL ,
+  location VARCHAR(255) NOT NULL,
   PRIMARY KEY (request_id),
   FOREIGN KEY (user_id) REFERENCES users(user_id),
   FOREIGN KEY (service_id) REFERENCES services(service_id)
@@ -66,7 +66,7 @@ CREATE TABLE IF NOT EXISTS quotes (
   request_id INT,
   quote_amount DECIMAL(10, 2) NOT NULL,
   quote_description TEXT,
-  date_quoted DATE NOT NULL DEFAULT CURRENT_DATE,
+  date_quoted TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (quote_id),
   FOREIGN KEY (artisan_id) REFERENCES artisans(artisan_id),
   FOREIGN KEY (request_id) REFERENCES requests(request_id)
@@ -117,7 +117,7 @@ CREATE TABLE IF NOT EXISTS Reviews (
   artisan_id INT,
   rating INT NOT NULL,
   review_text TEXT,
-  date_reviewed DATE NOT NULL DEFAULT CURRENT_DATE,
+  date_reviewed TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (review_id),
   FOREIGN KEY (user_id) REFERENCES Users(user_id),
   FOREIGN KEY (artisan_id) REFERENCES Artisans(artisan_id)
