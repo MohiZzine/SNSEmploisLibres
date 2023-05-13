@@ -24,7 +24,7 @@ CREATE TABLE IF NOT EXISTS artisans (
 );
 
 CREATE TABLE IF NOT EXISTS services (
-  service_id INT,
+  service_id INT AUTO_INCREMENT,
   service_name VARCHAR(255) NOT NULL,
   service_description TEXT NOT NULL,
   PRIMARY KEY (service_id)
@@ -39,7 +39,7 @@ CREATE TABLE IF NOT EXISTS artisan_services (
 );
 
 CREATE TABLE IF NOT EXISTS availabilities (
-  availability_id INT,
+  availability_id INT AUTO_INCREMENT,
   artisan_id INT,
   date DATE,
   start_time TIME,
@@ -49,7 +49,7 @@ CREATE TABLE IF NOT EXISTS availabilities (
 );
 
 CREATE TABLE IF NOT EXISTS requests (
-  request_id INT,
+  request_id INT AUTO_INCREMENT,
   user_id INT,
   service_id INT,
   description TEXT,
@@ -62,7 +62,7 @@ CREATE TABLE IF NOT EXISTS requests (
 );
 
 CREATE TABLE IF NOT EXISTS quotes (
-  quote_id INT,
+  quote_id INT AUTO_INCREMENT,
   artisan_id INT,
   request_id INT,
   quote_amount DECIMAL(10, 2) NOT NULL,
@@ -74,7 +74,7 @@ CREATE TABLE IF NOT EXISTS quotes (
 );
 
 CREATE TABLE IF NOT EXISTS payments (
-  payment_id INT,
+  payment_id INT AUTO_INCREMENT,
   user_id INT,
   artisan_id INT,
   request_id INT,
@@ -90,7 +90,7 @@ CREATE TABLE IF NOT EXISTS payments (
 );
 
 CREATE TABLE IF NOT EXISTS Messages (
-  message_id INT,
+  message_id INT AUTO_INCREMENT,
   user_id INT,
   artisan_id INT,
   request_id INT,
@@ -103,7 +103,7 @@ CREATE TABLE IF NOT EXISTS Messages (
 );
 
 CREATE TABLE IF NOT EXISTS Notifications (
-  notification_id INT,
+  notification_id INT AUTO_INCREMENT,
   user_id INT,
   message TEXT NOT NULL,
   date_sent DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -113,7 +113,7 @@ CREATE TABLE IF NOT EXISTS Notifications (
 );
 
 CREATE TABLE IF NOT EXISTS Reviews (
-  review_id INT,
+  review_id INT AUTO_INCREMENT,
   user_id INT,
   artisan_id INT,
   rating INT NOT NULL,
