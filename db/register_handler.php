@@ -2,8 +2,8 @@
 
 require_once '../utils/validation.php';
 
-$username = $full_name = $email = $password = $role = "";
-$username_err = $full_name_err = $email_err = $password_err = $role_err = "";
+$username = $full_name = $email = $password = $role = $phone_number = "";
+$username_err = $full_name_err = $email_err = $password_err = $role_err = $phone_number_err = "";
 
 if (isset($_POST['register'])) {
   $errors = array();
@@ -57,11 +57,15 @@ if (isset($_POST['register'])) {
     $confirm_password = htmlspecialchars(strip_tags(trim($_POST['confirm_password'])));
   }
 
+  // Validate phone number
+  if (empty(trim($_POST['phone_number']))) {
+    $phone_number_err = "Phone number should not be empty!";
+    $errors['phone_number'] = 'phone_number=' . $phone_number_err;
+  } else {
+    $phone_number = htmlspecialchars(strip_tags(trim($_POST['phone_number'])));
+  }
+
   if (!empty($errors)) {
-    print_r($_POST);
-    print_r($errors);
-    echo empty($errors) ? "Yes" : "No";
-    exit();
     $errors_string = implode('&', $errors);
     header('Location: ../views/register.php?' . $errors_string);
     exit();
@@ -75,7 +79,7 @@ if (isset($_POST['register'])) {
   $db->getConnection();
   $user = new User($db->pdo);
 
-  $user->setAttributes($username, $full_name, $email, $password, $role);
+  $user->setAttributes($username, $full_name, $email, $password, $phone_number, $role);
   $register = $user->register();
 
   if (!$register) {

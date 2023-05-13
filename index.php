@@ -1,3 +1,4 @@
+<?php session_start(); ?>
 <?php $title = "Home"; ?>
 
 <?php if (!isset($_SESSION['user_id'])) {
@@ -6,11 +7,12 @@
   include('includes/header.php');
 }
 ?>
+<link rel="stylesheet" href="styles/main.css">
 </head>
 
 <body class="bg-white">
-  <p class="text-center text-3xl text-gray-900">
-    Hello <?php echo $_SESSION['name'] ?>!
+  <p class="text-center text-3xl text-blue-500">
+    Hello <?php echo $_SESSION['full_name'] ?>!
   </p>
 
 

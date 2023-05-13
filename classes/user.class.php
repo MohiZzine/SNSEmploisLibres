@@ -10,6 +10,7 @@
     private $email;
     private $password;
     private $role;
+    private $phone_number;
     private $pdo;
 
     // Now I need to add a constructor to the class to initialize the database connection
@@ -19,13 +20,14 @@
       $this->pdo = $db;
     }
 
-    public function setAttributes($username, $full_name, $email, $password, $role)
+    public function setAttributes($username, $full_name, $email, $password, $phone_number, $role)
     {
       $this->username = $username;
       $this->full_name = $full_name;
       $this->email = $email;
       $this->password = $password;
       $this->role = $role;
+      $this->phone_number = $phone_number;
     }
 
     private function set_username($new_username)
@@ -48,14 +50,19 @@
       $this->role = $role;
     }
 
+    private function set_phone_number($tel)
+    {
+      $this->phone_number = $tel;
+    }
+
     public function register()
     {
-      $sql = "INSERT INTO users (username, full_name, email, password, role) VALUES(:username, :full_name, :email, :password, :role)";
+      $sql = "INSERT INTO users (username, full_name, email, password, role, phone_number) VALUES(:username, :full_name, :email, :password, :phone_number, :role)";
       $stmt = $this->pdo->prepare($sql);
 
       $hashed_password = password_hash($this->password, PASSWORD_BCRYPT);
 
-      if ($stmt->execute(['username' => $this->username, 'full_name' => $this->full_name, 'email' => $this->email, 'password' => $hashed_password, 'role' => $this->role])) {
+      if ($stmt->execute(['username' => $this->username, 'full_name' => $this->full_name, 'email' => $this->email, 'password' => $hashed_password, 'phone_number' => $this->phone_number, 'role' => $this->role])) {
         // Get user_id from the database
 
         return $this->pdo->lastInsertId();
@@ -73,8 +80,8 @@
       $result = $stmt->fetch(PDO::FETCH_ASSOC);
       if ($result) {
         if (password_verify($password, $result['password'])) {
-          ['full_name' => $full_name, 'username' => $username, 'email' => $email, 'password' => $password, 'role' => $role] = $result;
-          $this->setAttributes($username, $full_name, $email, $password, $role);
+          ['full_name' => $full_name, 'username' => $username, 'email' => $email, 'password' => $password, 'phone_number' => $phone_number, 'role' => $role] = $result;
+          $this->setAttributes($username, $full_name, $email, $password, $phone_number, $role);
           return true;
         }
         return 'Password is incorrect';

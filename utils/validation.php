@@ -41,3 +41,9 @@ function valid_confirm_password($password, $confirm_password)
   // Checks if the password and confirm password fields match
   return $confirm_password === $password;
 }
+
+function valid_phone_number($phone_number)
+{
+  // Checks if the phone number is valid
+  return preg_match('/^07[0-9]{8}$/', $phone_number);
+}

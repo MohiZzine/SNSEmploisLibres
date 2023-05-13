@@ -21,10 +21,10 @@ input::placeholder {
 button#login {
   width: 75%;
 }
-
-button#register {
-  width: 75%;
-}
+/* 
+  button#register {
+    width: 100px;
+  } */
 
 #recovery {
   width: 75%;
