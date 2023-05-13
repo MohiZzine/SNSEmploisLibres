@@ -4,13 +4,13 @@
 <link rel="stylesheet" href="../styles/login.css">
 </head>
 
-<body class="font-inter text-white bg-gray-700 min-h-screen">
+<body class="h-full font-inter text-white bg-gray-700">
   <header id="nav_bar" class="m-1">
     <?php include_once('../includes/navbar.php'); ?>
   </header>
 
-  <section id="register" class="container mx-auto h-full flex flex-col items-center justify-center gap-6">
-    <h1 class="uppercase p-4 text-center text-3xl mt-12">Register</h1>
+  <section id="register" class="container mx-auto flex flex-col items-center justify-center gap-4">
+    <h1 class="uppercase p-4 text-center text-3xl mt-6">Register</h1>
     <form action="../db/register_handler.php" method="get" class="w-full max-w-md flex flex-col items-center justify-center gap-4">
       <input type="text" name="username" id="username" placeholder="Username" class="placeholder:italic placeholder-white bg-transparent border-b-2 font-3xl pr-28 py-2 border-white text-md focus:outline-none focus:border-b-2">
       <input type="text" name="name" id="name" placeholder="Name" class="placeholder:italic placeholder-white bg-transparent border-b-2 font-3xl pr-28 py-2 border-white text-md focus:outline-none focus:border-b-2">

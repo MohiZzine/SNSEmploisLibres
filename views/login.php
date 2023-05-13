@@ -4,12 +4,12 @@
 <link rel="stylesheet" href="../styles/login.css">
 </head>
 
-<body class="font-inter text-white bg-gray-700 min-h-screen">
+<body class="font-inter text-white bg-gray-700 max-h-screen">
   <header id="nav_bar">
     <?php include_once('../includes/navbar.php') ?>
   </header>
 
-  <section id="login" class="container mx-auto h-full flex flex-col items-center justify-center gap-6">
+  <section id="login" class="container mx-auto flex flex-col items-center justify-center gap-6">
     <h1 class="uppercase p-4 text-center text-3xl mt-28">Login</h1>
     <form action="../db/login_handler.php" method="post" class="w-full max-w-md flex flex-col items-center justify-center gap-4">
       <input type="text" name="name" id="name" placeholder="Name" class="placeholder:italic placeholder-white bg-transparent border-b-2 font-3xl pr-28 py-2 border-white text-md focus:outline-none focus:border-b-2">
