@@ -1,11 +1,12 @@
-<?php session_start(); ?>
-<?php $title = "Home"; ?>
+<?php session_start();
 
-<?php if (!isset($_SESSION['user_id'])) {
+if (!isset($_SESSION['user_id'])) {
   header('Location: views/login.php');
-} else {
-  include('includes/header.php');
+  exit;
 }
+
+$title = "Home";
+include('includes/header.php');
 ?>
 <link rel="stylesheet" href="styles/main.css">
 </head>
@@ -14,6 +15,7 @@
   <p class="text-center text-3xl text-blue-500">
     Hello <?php echo $_SESSION['full_name'] ?>!
   </p>
+
 
 
   <?php include 'includes/footer.php'; ?>

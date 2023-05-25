@@ -30,6 +30,43 @@
       $this->phone_number = $phone_number;
     }
 
+    public function get_user_id()
+    {
+      return $this->user_id;
+    }
+
+    public function get_username()
+    {
+      return $this->username;
+    }
+
+    public function get_full_name()
+    {
+      return $this->full_name;
+    }
+
+    public function get_email()
+    {
+      return $this->email;
+    }
+
+    public function get_password()
+    {
+      return $this->password;
+    }
+
+    public function get_role()
+    {
+      return $this->role;
+    }
+
+    public function get_phone_number()
+    {
+      return $this->phone_number;
+    }
+
+
+
     private function set_username($new_username)
     {
       $this->username = $new_username;
@@ -70,23 +107,23 @@
       return false;
     }
 
-    public function login($username, $password)
+    public function login($username_or_email, $password)
     {
-      $sql = "SELECT * FROM users WHERE username = :username";
+      $sql = "SELECT * FROM users WHERE (username =:username) OR (email =:email)";
 
       $stmt = $this->pdo->prepare($sql);
 
-      $stmt->execute(['username' => $username]);
+      $stmt->execute(['username' => $username_or_email, 'email' => $username_or_email]);
       $result = $stmt->fetch(PDO::FETCH_ASSOC);
       if ($result) {
         if (password_verify($password, $result['password'])) {
           ['full_name' => $full_name, 'username' => $username, 'email' => $email, 'password' => $password, 'phone_number' => $phone_number, 'role' => $role] = $result;
           $this->setAttributes($username, $full_name, $email, $password, $phone_number, $role);
-          return true;
+          return ['login' => true, 'message' => 'Login successful!', 'user_id' => $result['user_id']];
         }
-        return 'Password is incorrect';
+        return ['login' => false, 'message' => 'Password is incorrect'];
       }
-      return false;
+      return ['login' => false, 'message' => "Username or email is incorrect!"];
     }
 
     public function reset_password($new_password)

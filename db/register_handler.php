@@ -1,6 +1,6 @@
 <?php
 
-require_once '../utils/validation.php';
+require_once '../utils/register_validation.php';
 
 $username = $full_name = $email = $password = $role = $phone_number = "";
 $username_err = $full_name_err = $email_err = $password_err = $role_err = $phone_number_err = "";

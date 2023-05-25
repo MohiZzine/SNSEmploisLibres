@@ -1,71 +1,59 @@
 <?php
 
-include_once '../utils/validation.php';
 
-$username = $name = $email = $password = $role = "";
-$username_err = $name_err = $email_err = $password_err = $role_err = "";
-$errors = array();
+include_once '../utils/login_validation.php';
+include_once '../classes/database.class.php';
+include_once '../classes/user.class.php';
 
-if (isset($_GET['login'])) {
-  if (empty(trim($_GET['username']))) {
-    $username_err = "Username should not be empty!";
-    $errors['username'] = 'username=' . $username_err;
+$username_or_email = $username_or_email = "";
+$password = $password_err = "";
+
+if (isset($_POST['login'])) {
+  $errors = array();
+
+  // Validate username / email
+  if (!valid_username_or_email(trim($_POST['username_or_email']))) {
+    $username_or_email_err = "Username or Email should not be empty!";
+    $errors['username_or_email'] = 'username_or_email=' . $username_or_email_err;
   } else {
-    $username = trim(htmlspecialchars(strip_tags($_GET['username'])));
+    $username = trim(htmlspecialchars(strip_tags($_POST['username_or_email'])));
   }
 
-  if (empty(trim($_GET['name']))) {
-    $name_err = "Name should not be empty!";
-    $errors['name'] = 'name=' . $name_err;
-  } else {
-    $name = trim(htmlspecialchars(strip_tags($_GET['name'])));
-  }
-
-  if (empty(trim($_GET['email']))) {
-    $email_err = "Email should not be empty!";
-    $errors['email'] = 'email=' . $email_err;
-  } else {
-    $email = trim(htmlspecialchars(strip_tags($_GET['email'])));
-  }
-
-  if (!valid_password($_GET['password'])) {
+  // Validate password
+  if (!valid_password($_POST['password'])) {
     $password_err = "Password should not be empty!";
     $errors['password'] = 'password=' . $password_err;
   } else {
-    $password = trim(htmlspecialchars(strip_tags($_GET['password'])));
-  }
-
-  if (empty(trim($_GET['role']))) {
-    $role_err = "Role should not be empty!";
-    $errors['role'] = 'role=' . $role_err;
-  } else {
-    $role = trim(htmlspecialchars(strip_tags($_GET['role'])));
+    $password = trim(htmlspecialchars(strip_tags($_POST['password'])));
   }
 
   if (!empty($errors)) {
-    $errors_string = implode('&', $errors);
-
-    header('Location: ../views/login.php?' . $errors_string);
+    $errors = implode('&', $errors);
+    header('Location: ../views/login.php?' . $errors);
   }
 
-  include '../utils/database.php';
+  $db = new Database();
+  $db->getConnection();
 
-  $user = new User($conn);
-  $login = $user->login($username, $password);
-  if (!$login) {
-    $login_error = "User not found! Enter a correct username!";
-    header('Location: ../views/login.php?error=' . $login_error);
-    exit();
+  $user = new User($db->pdo);
+  $login = $user->login($username_or_email, $password);
+  if (!$login['login']) {
+    if ($login['message'] == "Username or Email is incorrect!") {
+      $error = $login['message'];
+      header('Location: ../views/login.php?error=' . $error);
+      exit();
+    } else if ($login['message'] == "Password is incorrect!") {
+      $error = $login['message'];
+      header('Location: ../views/login.php?error=' . $error);
+      exit();
+    }
   }
 
-  if ($login == "Password is incorrect!") {
-    header('Location: ../views/login.php?error=' . $login);
-    exit();
-  }
 
   session_start();
   $_SESSION['user_id'] = $login['user_id'];
-  $_SESSION['username'] = $login['username'];
+  $_SESSION['username'] = $user->get_username();
+  $_SESSION['full_name'] = $user->get_full_name();
   header('Location: ../index.php');
   exit();
 }
