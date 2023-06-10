@@ -25,26 +25,25 @@ require_once("../utils/database.php");
     <?php include '../includes/dashboard_header.php'; ?>
       <div class="container-fluid">
 
-            <div class="card-container">
-              <h2 class="text-center p-3 m-2">Devis</h2>
-              <h4>What the artisan will do</h4>
+          <h2 class="text-center p-3 m-2">Devis</h2>
+          <h4>What the artisan will do</h4>
 
               <?php
               $ConnectingDB = $GLOBALS['pdo'];
-              $artisan_services = $ConnectingDB->query("SELECT * FROM artisan_services");
-              $artisan_service = $artisan_services->fetch(PDO::FETCH_ASSOC)) 
+              $artisan_services = $ConnectingDB->query("SELECT * FROM artisan_services WHERE artisan_id =  " . $_POST['artisan_id'] . " AND service_id = " . $_POST['service_id']);
+              $artisan_service = $artisan_services->fetch(PDO::FETCH_ASSOC);
                 ?>
-                <div class="card">
+                <div class="d-flex align-items-center justify-content-between gap-2">
+                  <p>Price</p>
+                  <p><?php echo $artisan_service['price'] ?></p>
+                </div>
+                <button type="submit">Demander une intervention</button>
+                <!-- <div class="card">
                   <form method="post" action="views/services.php">
-                    <input type="hidden" name="service_id" value="<?php echo $s["service_id"]; ?>">
                     <button type="submit" id="service" name="service" class="btn">
-                      <?php echo "<h4>". $s['service_name'].'</h4></br>'. $s['service_description']; ?>
                     </button>
                   </form>
-                </div>
-
-              <?php ?>
-            </div>
+                </div> -->
           </div>
         </div>
       </div>

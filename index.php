@@ -39,7 +39,6 @@ require_once("utils/database.php");
                     </button>
                   </form>
                 </div>
-
               <?php } ?>
             </div>
           </div>

@@ -3,12 +3,17 @@
   flex-wrap: wrap;
   justify-content: center;
 }
-.card {
-  width: 25%;
-  padding: 20px;
-  box-sizing: border-box;
-  margin: 10px;
+.artisan-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+}
+
+.artisan-table td, .artisan-table th {
   border: 1px solid #ccc;
-  border-radius: 5px;
-  text-align: center;
+  padding: 8px;
+}
+
+.review {
+  margin-bottom: 10px;
 }
