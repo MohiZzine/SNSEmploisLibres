@@ -241,9 +241,10 @@ require_once("../utils/database.php");
               echo '</table>';
               echo '<form action="services.php" method="post">';
               echo '<input type="submit" value="Back">';
-              echo '<input type="hidden" name="service_id" value='.$_POST["service_id"].'>';
               echo '</form>';
-              echo '<form  method="post">';
+              echo '<form  method="post" action="devis.php">';
+              echo '<input type="hidden" name="service_id" value='.$_POST["service_id"].'>';
+              echo '<input type="hidden" name="artisan_id" value='.$_POST["artisan_id"].'>';
               echo '<input type="submit" value="Choose">';
               echo '</form>';
 
@@ -255,7 +256,7 @@ require_once("../utils/database.php");
 
           </div>
         </div>
-        //button to go back to previous page
+        <!-- // button to go back to previous page -->
 
   </div>
   <script src="assets/libs/jquery/dist/jquery.min.js"></script>
