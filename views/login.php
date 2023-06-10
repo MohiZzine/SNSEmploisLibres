@@ -1,5 +1,22 @@
 <?php $title = "Register"; ?>
 <?php include_once('../includes/header.php') ?>
+<?php
+if (isset($_GET['error'])) {
+  $error = $_GET['error'];
+  echo "<script>alert('$error')</script>";
+}
+
+if (isset($_GET['username'])) {
+  $username = $_GET['username'];
+  echo "<script>document.getElementById('username').value = '$username'</script>";
+}
+
+if (isset($_GET['email'])) {
+  $email = $_GET['email'];
+}
+
+?>
+
 <link rel="stylesheet" href="../styles/main.css">
 <link rel="stylesheet" href="../styles/input.css">
 </head>

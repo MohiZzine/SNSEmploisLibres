@@ -16,7 +16,7 @@ if (isset($_POST['login'])) {
     $username_or_email_err = "Username or Email should not be empty!";
     $errors['username_or_email'] = 'username_or_email=' . $username_or_email_err;
   } else {
-    $username = trim(htmlspecialchars(strip_tags($_POST['username_or_email'])));
+    $username_or_email = trim(htmlspecialchars(strip_tags($_POST['username_or_email'])));
   }
 
   // Validate password
