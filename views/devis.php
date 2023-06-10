@@ -28,11 +28,11 @@ require_once("../utils/database.php");
             <div class="card-container">
               <h2 class="text-center p-3 m-2">Devis</h2>
               <h4>What the artisan will do</h4>
-              
+
               <?php
               $ConnectingDB = $GLOBALS['pdo'];
-              $service = $ConnectingDB->query("SELECT * FROM services");
-              while ($s = $service->fetch(PDO::FETCH_ASSOC)) {
+              $artisan_services = $ConnectingDB->query("SELECT * FROM artisan_services");
+              $artisan_service = $artisan_services->fetch(PDO::FETCH_ASSOC)) 
                 ?>
                 <div class="card">
                   <form method="post" action="views/services.php">
@@ -43,7 +43,7 @@ require_once("../utils/database.php");
                   </form>
                 </div>
 
-              <?php } ?>
+              <?php ?>
             </div>
           </div>
         </div>
