@@ -1,6 +1,7 @@
 <?php session_start();
 if (!isset($_SESSION['user_id'])) {
-  header('Location: views/login.php');
+  // var_dump($_SESSION);
+  // header('Location: login.php');
   exit();
 }
 require_once("../utils/database.php");
@@ -8,6 +9,7 @@ require_once("../utils/database.php");
 ?>
 <!doctype html>
 <html lang="en">
+
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -18,36 +20,39 @@ require_once("../utils/database.php");
   <link rel="stylesheet" href="../styles/dashboard.css" />
   <link rel="stylesheet" href="../styles/cards.css" />
 </head>
+
 <body>
   <!--  Body Wrapper -->
   <div class="page-wrapper" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full"
     data-sidebar-position="fixed" data-header-position="fixed">
     <?php include '../includes/dashboard_header.php'; ?>
-      <div class="container-fluid">
+    <div class="container-fluid">
 
-          <h2 class="text-center p-3 m-2">Devis</h2>
-          <h4>What the artisan will do</h4>
+      <h2 class="text-center p-3 m-2">Devis</h2>
+      <h4>What the artisan will do</h4>
 
-              <?php
-              $ConnectingDB = $GLOBALS['pdo'];
-              $artisan_services = $ConnectingDB->query("SELECT * FROM artisan_services WHERE artisan_id =  " . $_POST['artisan_id'] . " AND service_id = " . $_POST['service_id']);
-              $artisan_service = $artisan_services->fetch(PDO::FETCH_ASSOC);
-                ?>
-                <div class="d-flex align-items-center justify-content-between gap-2">
-                  <p>Price</p>
-                  <p><?php echo $artisan_service['price'] ?></p>
-                </div>
-                <button type="submit">Demander une intervention</button>
-                <!-- <div class="card">
+      <?php
+      $ConnectingDB = $GLOBALS['pdo'];
+      $artisan_services = $ConnectingDB->query("SELECT * FROM artisan_services WHERE artisan_id =  " . $_POST['artisan_id'] . " AND service_id = " . $_POST['service_id']);
+      $artisan_service = $artisan_services->fetch(PDO::FETCH_ASSOC);
+      ?>
+      <div class="d-flex align-items-center justify-content-between gap-2">
+        <p>Price</p>
+        <p>
+          <?php echo $artisan_service['price'] ?>
+        </p>
+      </div>
+      <button type="submit">Demander une intervention</button>
+      <!-- <div class="card">
                   <form method="post" action="views/services.php">
                     <button type="submit" id="service" name="service" class="btn">
                     </button>
                   </form>
                 </div> -->
-          </div>
-        </div>
-      </div>
     </div>
+  </div>
+  </div>
+  </div>
   </div>
   <script src="assets/libs/jquery/dist/jquery.min.js"></script>
   <script src="assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>

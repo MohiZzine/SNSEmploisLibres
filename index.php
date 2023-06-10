@@ -1,85 +1,46 @@
+<?php $title = "Register"; ?>
+<?php include_once('includes/header.php') ?>
 <?php
-session_start();
-require_once("utils/database.php");
+if (isset($_GET['error'])) {
+  $error = $_GET['error'];
+  echo "<script>alert('$error')</script>";
+}
+
+if (isset($_GET['username'])) {
+  $username = $_GET['username'];
+  echo "<script>document.getElementById('username').value = '$username'</script>";
+}
+
+if (isset($_GET['email'])) {
+  $email = $_GET['email'];
+}
+
+if (isset($_GET['password'])) {
+  $password = $_GET['password'];
+}
+
 ?>
 
-<!doctype html>
-<html lang="en">
-
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>SNS Emplois Libres</title>
-  <!-- <link rel="stylesheet" href="styles/main.css"> -->
-  <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
-    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"> -->
-  <link rel="stylesheet" href="styles/dashboard.css" />
-  <link rel="stylesheet" href="styles/cards.css" />
-  <link rel="stylesheet" href="styles/modal.css" />
+<link rel="stylesheet" href="styles/main.css">
+<link rel="stylesheet" href="styles/input.css">
 </head>
 
-<body>
-  <!--  Body Wrapper -->
-  <div class="page-wrapper" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full"
-    data-sidebar-position="fixed" data-header-position="fixed">
-    <?php include 'includes/dashboard_header.php'; ?>
-    <!--  Header End -->
-    <div class="container-fluid">
+<body class="font-inter text-white bg-gray-700 max-h-screen">
+  <header id="nav_bar">
+    <?php include_once('includes/navbar.php') ?>
+  </header>
 
-      <div class="card-container">
-        <?php
-        $ConnectingDB = $GLOBALS['pdo'];
-        $service = $ConnectingDB->query("SELECT * FROM services");
-        while ($s = $service->fetch(PDO::FETCH_ASSOC)) {
-          ?>
-          <div class="card">
-            <button id="service" name="service" class="btn">
-              <?php echo "<h4>" . $s['service_name'] . '</h4></br>' . $s['service_description']; ?>
-            </button>
-
-            <!-- The Modal -->
-            <div id="myModal" class="modal">
-              <div class="modal-content">
-                <span class="close" style="color:white; position:absolute; right: 11px; top:0;">&times;</span>
-
-                <form method="post" action="views/services.php">
-                  <input type="hidden" name="service_id" value="<?php echo $s["service_id"]; ?>">
-                  <label>Enter your city</label><br>
-                  <input type="text" id="location" name="location" placeholder="City" required><br>
-                  <input type="submit" name="submit" class="btn"></input>
-                </form>
-
-              </div>
-            </div>
-
-          </div>
-        <?php } ?>
+  <section id="login" class="container mx-auto flex flex-col items-center justify-center gap-6">
+    <h1 class="uppercase p-4 text-center text-3xl mt-28">Login</h1>
+    <form action="db/login_handler.php" method="POST" class="w-full max-w-md flex flex-col items-center justify-center gap-4">
+      <input type="text" name="username_or_email" id="username_or_email" placeholder="Username / Email " class="placeholder:italic placeholder-white bg-transparent border-b-2 font-3xl pr-28 py-2 border-white text-md focus:outline-none focus:border-b-2 transparent-auto-fill">
+      <input type="password" name="password" id="password" placeholder="Password" class="placeholder:italic placeholder-white bg-transparent border-b-2 font-3xl pr-28 py-2 border-white text-md focus:outline-none focus:border-b-2">
+      <button type="submit" id="login-btn" name="login" class="w-1/2 uppercase rounded-sm bg-green-500 text-white font-bold font-lg p-1.5 px-3 border-transparent hover:bg-green-600 hover:text-gray-200">Login</button>
+      <div id="recovery" class="flex items-center justify-between gap-4 text-center">
+        <p class="text-sm mx-6"><a href="views/register.php" class="hover:cursor-pointer hover:text-gray-500">Sign Up</a></p>
+        <p class="text-sm mx-6"><a href="forgot_password.php" class="hover:cursor-pointer hover:text-gray-500">Forgot Password</a></p>
       </div>
-    </div>
-  </div>
-  </div>
-  </div>
-  </div>
-  <script>
-    var modal = document.getElementById("myModal");
-    var btn = document.getElementById("service");
-    var span = document.getElementsByClassName("close")[0];
-    btn.onclick = function () {
-      modal.style.display = "block";
-    }
-    span.onclick = function () {
-      modal.style.display = "none";
-    }
-    window.onclick = function (event) {
-      if (event.target == modal) {
-        modal.style.display = "none";
-      }
-    }
-  </script>
-  <script src="assets/libs/jquery/dist/jquery.min.js"></script>
-  <script src="assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-  <script src="assets/js/sidebarmenu.js"></script>
-  <script src="assets/js/app.min.js"></script>
-  <script src="assets/libs/simplebar/dist/simplebar.js"></script>
+    </form>
+  </section>
 
-  <?php include 'includes/footer.php'; ?>
+  <?php include_once('includes/footer.php'); ?>

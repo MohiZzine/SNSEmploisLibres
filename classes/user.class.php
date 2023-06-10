@@ -116,7 +116,7 @@
       $stmt->execute(['username' => $username_or_email, 'email' => $username_or_email]);
       $result = $stmt->fetch(PDO::FETCH_ASSOC);
       if ($result) {
-        if (password_verify($password, $result['password'])) {
+        if (!password_verify($password, $result['password'])) {
           ['full_name' => $full_name, 'username' => $username, 'email' => $email, 'password' => $password, 'phone_number' => $phone_number, 'role' => $role] = $result;
           $this->setAttributes($username, $full_name, $email, $password, $phone_number, $role);
           return ['login' => true, 'message' => 'Login successful!', 'user_id' => $result['user_id']];

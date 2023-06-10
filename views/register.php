@@ -118,7 +118,7 @@ if (isset($_GET['error'])) {
         <button type="submit" name="register" id="register" class="w-1/4 uppercase rounded-sm bg-green-500 text-white font-bold font-lg p-1.5 px-8 mt-10 border-transparent hover:bg-green-600 hover:text-gray-200">Register</button>
       </div>
       <div id="recovery" class="flex items-center justify-around gap-4 text-center">
-        <p class="text-sm mx-6"><a href="login.php" class="hover:cursor-pointer hover:text-gray-500">Sign In</a></p>
+        <p class="text-sm mx-6"><a href="../index.php" class="hover:cursor-pointer hover:text-gray-500">Sign In</a></p>
       </div>
     </form>
   </section>

@@ -29,7 +29,7 @@ if (isset($_POST['login'])) {
 
   if (!empty($errors)) {
     $errors = implode('&', $errors);
-    header('Location: ../views/login.php?' . $errors);
+    header('Location: ../index.php?' . $errors);
   }
 
   $db = new Database();
@@ -40,20 +40,28 @@ if (isset($_POST['login'])) {
   if (!$login['login']) {
     if ($login['message'] == "Username or Email is incorrect!") {
       $error = $login['message'];
-      header('Location: ../views/login.php?error=' . $error);
+      header('Location: ../index.php?error=' . $error);
       exit();
     } else if ($login['message'] == "Password is incorrect!") {
       $error = $login['message'];
-      header('Location: ../views/login.php?error=' . $error);
+      header('Location: ../index.php?error=' . $error);
       exit();
     }
   }
 
 
   session_start();
+  // var_dump($login);
   $_SESSION['user_id'] = $login['user_id'];
   $_SESSION['username'] = $user->get_username();
   $_SESSION['full_name'] = $user->get_full_name();
-  header('Location: ../index.php');
-  exit();
+  $_SESSION['role'] = $user->get_role();
+  if ($_SESSION['role'] == "user") {
+    header('Location: ../views/dashboardUser.php');
+    exit();
+  }
+  if ($_SESSION['role'] == "artisan") {
+    header('location: ../views/dashboardArtisan.php');
+    exit();
+  }
 }
