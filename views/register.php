@@ -1,4 +1,5 @@
-<?php $title = "Register";
+<?php session_start();
+$title = "Register";
 include_once('../includes/header.php');
 
 if (isset($_GET['username'])) {

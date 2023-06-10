@@ -123,3 +123,7 @@ CREATE TABLE IF NOT EXISTS Reviews (
   FOREIGN KEY (user_id) REFERENCES Users(user_id),
   FOREIGN KEY (artisan_id) REFERENCES Artisans(artisan_id)
 );
+
+
+
+INSERT INTO Users (username, full_name, email, password, phone) VALUES ('mohizine', 'Mohieddine Farid', )
