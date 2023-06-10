@@ -8,7 +8,7 @@ CREATE TABLE IF NOT EXISTS users (
   email VARCHAR(75) NOT NULL UNIQUE,
   password VARCHAR(255) NOT NULL,
   phone_number VARCHAR(25) NOT NULL UNIQUE,
-  role VARCHAR(10) NOT NULL,
+  role VARCHAR(10) ENUM ('user', 'artisan') NOT NULL DEFAULT 'user',
   PRIMARY KEY (user_id)
 );
 
