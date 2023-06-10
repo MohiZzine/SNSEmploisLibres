@@ -1,12 +1,17 @@
+DROP DATABASE IF EXISTS sns;
 CREATE DATABASE IF NOT EXISTS sns;
 USE sns;
 
 CREATE TABLE IF NOT EXISTS users (
   user_id INT NOT NULL AUTO_INCREMENT,
-  username VARCHAR(50) NOT NULL UNIQUE,
-  full_name VARCHAR(50) NOT NULL,
+  username VARCHAR(28) NOT NULL UNIQUE,
+  full_name VARCHAR(28) NOT NULL,
   email VARCHAR(75) NOT NULL UNIQUE,
+<<<<<<< HEAD
   password VARCHAR(255) NOT NULL,
+=======
+  password VARCHAR(250) NOT NULL UNIQUE,
+>>>>>>> 3dced5dc189d2267cd0f93806bd774d0b0c5aae7
   phone_number VARCHAR(25) NOT NULL UNIQUE,
   role ENUM ('user', 'artisan') NOT NULL DEFAULT 'user',
   PRIMARY KEY (user_id)
@@ -19,6 +24,8 @@ CREATE TABLE IF NOT EXISTS artisans (
   company_address VARCHAR(175) UNIQUE NOT NULL,
   description TEXT NOT NULL,
   profile_picture VARCHAR(255) NOT NULL,
+  certifications VARCHAR(255) NOT NULL,
+  location VARCHAR(255) NOT NULL,
   PRIMARY KEY (artisan_id),
   FOREIGN KEY (user_id) REFERENCES users(user_id)
 );
@@ -128,19 +135,23 @@ CREATE TABLE IF NOT EXISTS Reviews (
 -- LeoMohi1987
 -- RonaldoSui1985
 
-INSERT INTO Users (username, full_name, email, password, phone_number) VALUES ('mohizine', 'Mohieddine Farid', 'farid.mohieddine@gmail.com', '$2y$10$ANvC.QckSes9a0vH62h33evuASZaDIXBPLV/A6ZurCT.2jcX6rtmi
+INSERT INTO Users (user_id, username, full_name, email, password, phone_number) VALUES (1, 'mohizine', 'Mohieddine Farid', 'farid.mohieddine@gmail.com', '$2y$10$ANvC.QckSes9a0vH62h33evuASZaDIXBPLV/A6ZurCT.2jcX6rtmi
 ', '123456'),
-('MohiZwine', 'Leonel Messi', 'leomessi@gmail.com', '$2y$10$63iJ6y.F1WwHMcVUHQ/l/eia65Q0yQZYCd3tSlrvVgqMKBDHry4aO
+(2, 'MohiZwine', 'Leonel Messi', 'leomessi@gmail.com', '$2y$10$63iJ6y.F1WwHMcVUHQ/l/eia65Q0yQZYCd3tSlrvVgqMKBDHry4aO
 ','6666666'),
-('Cristiano', 'Cristiano Ronaldo', 'cris@gmail.com', '$2y$10$p4geEi6CFgXBkwHVhQl/Ke9BpNA67P7Cibl53nPvRATnJrYsUogZG
-', '777777');
+(3, 'Cristiano', 'Cristiano Ronaldo','Cristiano@gmail.com', '$2y$10$p4geEi6CFgXBkwHVhQl/Ke9BpNA67P7Cibl53nPvRATnJrYsUogZG
+', '7777377'),
+(4, 'Imane', 'Imane Rahali', 'imane@gmail.com', '$2y$10$63iJ6y.F1WwHMcVUHQ/l/ea65Q0yQZYCd3tSlrvVgqMKBDHry4aO
+','66663666'),
+(5, 'Ayman', 'Ayman Messi', 'ayman@gmail.com', '$2y$10$63iJ6y.F1WwHMcVUHQ/l/ei65Q0yQZYCd3tSlrvVgqMKBDHry4aO
+','66616666');
 
-INSERT INTO artisans (artisan_id, user_id, company_name, company_address, description, profile_picture) VALUES
-(3, 'Bob Plumbing', '123 Plumber St, New York', 'Expert plumbing services.', 'bob_profile.jpg'),
-(4, 'Alice Electricians', '456 Electric Ave, New York', 'Reliable electrical services.', 'alice_profile.jpg'),
-(3, 'HandyFix', '789 Fixit Rd, New York', 'General handyman services.', 'handyfix_profile.jpg'),
-(4, 'Roof Masters', '1011 Roof St, New York', 'Professional roofing services.', 'roofmasters_profile.jpg'),
-(3, 'Comfort HVAC', '1213 Heat Rd, New York', 'HVAC installation and repair.', 'comfort_profile.jpg');
+INSERT INTO artisans (user_id, company_name, company_address, description, profile_picture,certifications,location) VALUES
+(1, 'Bob Plumbing', '123 Plumber St, New York', 'Expert plumbing services.', 'https://img.freepik.com/free-photo/wide-angle-shot-single-tree-growing-clouded-sky-during-sunset-surrounded-by-grass_181624-22807.jpg?w=900&t=st=1686412681~exp=1686413281~hmac=6689aebfa8a06f0a67001392aac6c9b305300536f9bce311badce730320c1434','certificat1','rabat'),
+(2, 'Alice Electricians', '456 Electric Ave, New York', 'Reliable electrical services.', 'https://img.freepik.com/free-photo/beautiful-scenery-green-valley-near-alp-mountains-austria-cloudy-sky_181624-6979.jpg?size=626&ext=jpg&ga=GA1.1.2144948786.1684935304&semt=sph','certificat2','agadir'),
+(3, 'HandyFix', '789 Fixit Rd, New York', 'General handyman services.', 'handyfix_profile.jpg','https://img.freepik.com/free-photo/beautiful-scenery-pathway-forest-with-trees-covered-with-frost_181624-42376.jpg?size=626&ext=jpg&ga=GA1.2.2144948786.1684935304&semt=sph','tanger'),
+(4, 'Roof Masters', '1011 Roof St, New York', 'Professional roofing services.', 'https://img.freepik.com/free-photo/beautiful-scenery-pathway-forest-with-trees-covered-with-frost_181624-42376.jpg?size=626&ext=jpg&ga=GA1.2.2144948786.1684935304&semt=sph','certificat4','fes'),
+(5, 'Comfort HVAC', '1213 Heat Rd, New York', 'HVAC installation and repair.', 'https://img.freepik.com/free-photo/beautiful-view-greenery-bridge-forest-perfect-background_181624-17827.jpg?size=626&ext=jpg&ga=GA1.2.2144948786.1684935304&semt=sph','certificat5','meknes');
 
 -- Populating the services table
 INSERT INTO services (service_name, service_description) VALUES
@@ -168,7 +179,7 @@ INSERT INTO availabilities (artisan_id, date, start_time, end_time) VALUES
 
 -- Populating the requests table
 INSERT INTO requests (user_id, service_id, description, location) VALUES
-(1, 5, 'Need HVAC repair for central air.', ''),
+(1, 5, 'Need HVAC repair for central air.', '123 Main St, New York'),
 (2, 4, 'Leaky roof needs fixing.', '456 Elm St, New York'),
 (5, 3, 'Broken window and door repair.', '789 Oak St, New York'),
 (1, 2, 'Electrical wiring repair needed.', '111 Pine St, New York'),
