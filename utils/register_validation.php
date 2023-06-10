@@ -6,12 +6,19 @@
 
 function valid_username($username)
 {
+  // Checks if the username contains:
+  // - Only letters and numbers
+  // - At least 4 characters
   $result = preg_match('/^[a-zA-Z0-9]{4,}$/u', $username);
   return $result;
 }
 
 function valid_full_name($name)
 {
+  // Checks if the full name contains:
+  // - Only letters
+  // - At least 2 characters
+
   $result = preg_match('/^[\p{L}\s]{2,}$/u', $name);
   return $result;
 }
@@ -44,6 +51,8 @@ function valid_confirm_password($password, $confirm_password)
 
 function valid_phone_number($phone_number)
 {
-  // Checks if the phone number is valid
+  // Checks if the phone number:
+  // - Is 10 digits long
+  // - Starts with 07
   return preg_match('/^07[0-9]{8}$/', $phone_number);
 }

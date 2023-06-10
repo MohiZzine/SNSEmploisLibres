@@ -18,6 +18,10 @@ if (isset($_GET['password'])) {
   $passwordErr = $_GET['password'];
 }
 
+if (isset($GET['confirm_password'])) {
+  $confirm_passwordErr = $_GET['confirm_password'];
+}
+
 if (isset($_GET['role'])) {
   $roleErr = $_GET['role'];
 }
@@ -45,7 +49,7 @@ if (isset($_GET['error'])) {
       <div class="w-full flex items-center justify-around">
         <div class="flex flex-col items-center justify-center">
           <input type="text" name="username" id="username" placeholder="Username" class="placeholder:italic placeholder-white bg-transparent border-b-2 font-3xl px-6 py-2 border-white text-md focus:outline-none focus:border-b-2 <?php echo isset($usernameErr) ? 'border-rose-500' : '' ?> transparent-auto-fill">
-          <small class="mt-2 m-3 text-center text-blue-700">
+          <small class="mt-2 m-3 text-center" style="color: red;">
           <?php if (isset($usernameErr)) : ?>
               <?php echo isset($usernameErr) ? $usernameErr : ''; ?>
               <?php endif; ?>
@@ -53,55 +57,60 @@ if (isset($_GET['error'])) {
         </div>
         <div class="flex flex-col items-center justify-center">
           <input type="text" name="full_name" id="full_name" placeholder="Full name" class="placeholder:italic placeholder-white bg-transparent border-b-2 font-3xl px-6 py-2 border-white text-md focus:outline-none focus:border-b-2 <?php echo isset($full_nameErr) ? 'border-rose-500' : null ?>">
+          <small class="mt-2 m-3 text-center text-pink-600" style="color: red;">
           <?php if (isset($full_nameErr)) : ?>
-            <small class="mt-2 m-3 text-center text-pink-600">
               <?php echo isset($full_nameErr) ? $full_nameErr : ''; ?>
-            </small>
-          <?php endif; ?>
+              <?php endif; ?>
+          </small>
         </div>
         <div class="flex flex-col items-center justify-center">
-          <input type="text" name="role" id="role" placeholder="Role" class=" placeholder:italic placeholder-white bg-transparent border-b-2 font-3xl px-6 py-2 border-white text-md focus:outline-none focus:border-b-2">
+        <select name="role" id="role" class=" placeholder:italic placeholder-white bg-transparent border-b-2 font-3xl px-6 py-2 border-white text-md focus:outline-none focus:border-b-2">
+          <option value="" disabled>Select your role</option>
+          <option value="user" style="color: black">User</option>
+          <option value="artisan" style="color: black">Artisan</option>
+        </select>
+          <!-- <input type="text" name="role" id="role" placeholder="Role" > -->
+          <small class="mt-2 m-3 text-center text-pink-600" style="color: red;">
           <?php if (isset($roleErr)) : ?>
-            <small class="mt-2 m-3 text-center text-pink-600">
               <?php echo isset($roleErr) ? $roleErr : ''; ?>
-            </small>
-          <?php endif; ?>
+              <?php endif; ?>
+          </small>
         </div>
       </div>
       <div class="w-full flex items-center justify-around">
         <div class="flex flex-col items-center justify-center">
           <input type="email" name="email" id="email" placeholder="Email" class="placeholder:italic placeholder-white bg-transparent border-b-2 font-3xl px-6 py-2 border-white text-md focus:outline-none focus:border-b-2 <?php echo isset($emailErr) ? 'border-rose-500' : null ?>">
+          <small class="mt-2 m-3 text-center text-pink-600" style="color: red;">
           <?php if (isset($emailErr)) : ?>
-            <small class="mt-2 m-3 text-center text-pink-600">
               <?php echo isset($emailErr) ? $emailErr : ''; ?>
+              <?php endif; ?>
             </small>
-          <?php endif; ?>
         </div>
         <div class="flex flex-col items-center justify-center">
           <input type="password" name="password" id="password" placeholder="Password" class="placeholder-italic placeholder-white bg-transparent border-b-2 font-3xl px-6 py-2 border-white text-md focus:border-b-2 <?php echo isset($passwordErr) ? 'border-rose-500' : null ?> focus:outline-none">
+          <small class="mt-2 m-3 text-center text-pink-600" style="color: red;">
           <?php if (isset($passwordErr)) : ?>
-            <small class="mt-2 m-3 text-center text-pink-600">
               <?php echo isset($passwordErr) ? $passwordErr : ''; ?>
-            </small>
-          <?php endif; ?>
+              <?php endif; ?>
+          </small>
         </div>
         <div class="flex flex-col items-center justify-center">
           <input type="password" name="confirm_password" id="confirm_password" placeholder="Password Confirmation" class="placeholder-italic placeholder-white bg-transparent border-b-2 font-3xl px-6 py-2 border-white text-md focus:border-b-2 focus:outline-none <?php echo (isset($password_confirmErr)) ? 'border-rose-500' : null ?>">
+          <small class="mt-2 m-3 text-center text-pink-600" style="color: red;">
           <?php if (isset($confirm_passwordErr)) : ?>
-            <small class="mt-2 m-3 text-center text-pink-600">
               <?php echo isset($confirm_passwordErr) ? $confirm_passwordErr : ''; ?>
-            </small>
-          <?php endif; ?>
+              <?php endif; ?>
+          </small>
         </div>
       </div>
       <div class="w-full flex items-center justify-around">
         <div class="flex flex-col items-center justify-center">
           <input type="text" name="phone_number" id="phone_number" placeholder="Telephone" class="placeholder-italic placeholder-white bg-transparent border-b-2 font-3xl px-6 py-2 border-white text-md focus:border-b-2 focus:outline-none <?php echo isset($phone_numberErr) ? 'border-rose-500' : null ?>">
+          <small class="mt-2 m-3 text-center text-pink-600" style="color: red;">
           <?php if (isset($phone_numberErr)) : ?>
-            <small class="mt-2 m-3 text-center text-pink-600">
               <?php echo isset($phone_numberErr) ? $phone_numberErr : ''; ?>
+              <?php endif; ?>
             </small>
-          <?php endif; ?>
         </div>
       </div>
       <div class="w-full flex items-center justify-center">
