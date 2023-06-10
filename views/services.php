@@ -213,36 +213,49 @@ require_once("../utils/database.php");
                 <div class="card-container">
 
                     <?php
-                    $ConnectingDB = $GLOBALS['pdo'];
-                    $service = $_POST["service_id"];
-                    $artisan = $ConnectingDB->query("SELECT * 
-                                                    FROM Users U Natural JOIN (SELECT *
-                                                                FROM artisan_services NATURAL JOIN Artisans 
-                                                                WHERE service_id= $service) P");
-                    while ($a = $artisan->fetch(PDO::FETCH_ASSOC)) {
-                        ?>
+                    if (isset($_POST['submit'])) {
+                        $ConnectingDB = $GLOBALS['pdo'];
+                        $service = $_POST["service_id"];
+                        $location = $_POST["location"];
+                        $q = "SELECT * 
+                            FROM Users U Natural JOIN (SELECT *
+                                                        FROM artisan_services NATURAL JOIN Artisans 
+                                                        WHERE service_id='$service' AND location='$location') P";
+                        $stmt = $ConnectingDB->prepare($q);
+                        $stmt->execute();
+                        if ($stmt->rowCount() != 0) {
+                            while ($a = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                                ?>
 
-                        <div class="card">
-                            
-                            <?php 
-                            if ($a["profile_picture"]) { 
-                                echo '<img src="'.$a['profile_picture'] .'" alt="artisan">';
-                            } else {
-                                echo '<img src="../assets/user.jpg" alt="artisan">';
-                            }?>
-                            
-                            <h3><?php echo $a["full_name"]; ?></h3>
-                            <h3><b>Company:</b> <?php echo $a["company_name"]; ?></h3>
-                            <form method="post" action="profile.php">
-                                <input type="hidden" name="artisan_id" value="<?php echo $a["artisan_id"]; ?>">
-                    <input type="hidden" name="service_id" value="<?php echo $_POST["service_id"]; ?>">
-                                <button type="submit" id="artisan" name="artisan" class="btn">View Profile
-                                </button>
-                            </form>
-                        </div>
+                                <div class="card">
+
+                                    <?php
+                                    if ($a["profile_picture"]) {
+                                        echo '<img src="' . $a['profile_picture'] . '" alt="artisan">';
+                                    } else {
+                                        echo '<img src="../assets/user.jpg" alt="artisan">';
+                                    } ?>
+
+                                    <h3>
+                                        <?php echo $a["full_name"]; ?>
+                                    </h3>
+                                    <h3><b>Company:</b>
+                                        <?php echo $a["company_name"]; ?>
+                                    </h3>
+                                    <form method="post" action="profile.php">
+                                        <input type="hidden" name="artisan_id" value="<?php echo $a["artisan_id"]; ?>">
+                                        <input type="hidden" name="service_id" value="<?php echo $_POST["service_id"]; ?>">
+                                        <button type="submit" id="artisan" name="artisan" class="btn">View Profile
+                                        </button>
+                                    </form>
+                                </div>
 
 
-                    <?php } ?>
+                            <?php }
+                        } else {
+                            echo "<p>There are no craftsmen of this service in your area.</p>";
+                        }
+                    } ?>
                 </div>
 
 
@@ -257,4 +270,4 @@ require_once("../utils/database.php");
     <script src="assets/js/app.min.js"></script>
     <script src="assets/libs/simplebar/dist/simplebar.js"></script>
 
-<?php include '../includes/footer.php'; ?>
+    <?php include '../includes/footer.php'; ?>

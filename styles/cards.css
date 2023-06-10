@@ -3,13 +3,21 @@
   flex-wrap: wrap;
   justify-content: center;
 }
+
 .artisan-table {
   width: 100%;
   border-collapse: collapse;
   margin-bottom: 20px;
 }
 
-.artisan-table td, .artisan-table th {
+.card img {
+  width: 100%;
+  height: auto;
+  border-radius: 5px;
+}
+
+.artisan-table td,
+.artisan-table th {
   border: 1px solid #ccc;
   padding: 8px;
 }
