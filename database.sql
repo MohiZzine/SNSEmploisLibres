@@ -134,3 +134,82 @@ INSERT INTO Users (username, full_name, email, password, phone) VALUES ('mohizin
 ','6666666'),
 ('Cristiano', 'Cristiano Ronaldo', '$2y$10$p4geEi6CFgXBkwHVhQl/Ke9BpNA67P7Cibl53nPvRATnJrYsUogZG
 ', '777777');
+
+INSERT INTO artisans (user_id, company_name, company_address, description, profile_picture) VALUES
+(3, 'Bob Plumbing', '123 Plumber St, New York', 'Expert plumbing services.', 'bob_profile.jpg'),
+(4, 'Alice Electricians', '456 Electric Ave, New York', 'Reliable electrical services.', 'alice_profile.jpg'),
+(3, 'HandyFix', '789 Fixit Rd, New York', 'General handyman services.', 'handyfix_profile.jpg'),
+(4, 'Roof Masters', '1011 Roof St, New York', 'Professional roofing services.', 'roofmasters_profile.jpg'),
+(3, 'Comfort HVAC', '1213 Heat Rd, New York', 'HVAC installation and repair.', 'comfort_profile.jpg');
+
+-- Populating the services table
+INSERT INTO services (service_name, service_description) VALUES
+('Plumbing', 'All kinds of plumbing services.'),
+('Electrical', 'Electrical installations and repairs.'),
+('Handyman', 'General repair and maintenance.'),
+('Roofing', 'Roof repair and installation.'),
+('HVAC', 'Heating, ventilation, and air conditioning services.');
+
+-- Populating the artisan_services table
+INSERT INTO artisan_services (artisan_id, service_id) VALUES
+(1, 1),
+(2, 2),
+(3, 3),
+(4, 4),
+(5, 5);
+
+-- Populating the availabilities table
+INSERT INTO availabilities (artisan_id, date, start_time, end_time) VALUES
+(1, '2023-06-12', '09:00:00', '17:00:00'),
+(2, '2023-06-13', '10:00:00', '18:00:00'),
+(3, '2023-06-14', '08:00:00', '16:00:00'),
+(4, '2023-06-15', '11:00:00', '19:00:00'),
+(5, '2023-06-16', '09:30:00', '17:30:00');
+
+-- Populating the requests table
+INSERT INTO requests (user_id, service_id, description, location) VALUES
+(1, 5, 'Need HVAC repair for central air.', '123 Main St, New York'),
+(2, 4, 'Leaky roof needs fixing.', '456 Elm St, New York'),
+(5, 3, 'Broken window and door repair.', '789 Oak St, New York'),
+(1, 2, 'Electrical wiring repair needed.', '111 Pine St, New York'),
+(2, 1, 'Pipes need replacing.', '222 Maple St, New York');
+
+-- Populating the quotes table
+INSERT INTO quotes (artisan_id, request_id, quote_amount, quote_description) VALUES
+(1, 1, 200.50, 'HVAC repair services'),
+(2, 2, 300.75, 'Roof repair services'),
+(3, 3, 150.00, 'Window and door repair'),
+(4, 4, 225.00, 'Electrical wiring repair'),
+(5, 5, 180.00, 'Plumbing services');
+
+-- Populating the payments table
+INSERT INTO payments (user_id, artisan_id, request_id, quote_id, payment_amount, date_paid, payment_method) VALUES
+(1, 1, 1, 1, 200.50, '2023-06-11', 'Credit Card'),
+(2, 2, 2, 2, 300.75, '2023-06-12', 'PayPal'),
+(5, 3, 3, 3, 150.00, '2023-06-13', 'Debit Card'),
+(1, 4, 4, 4, 225.00, '2023-06-14', 'Credit Card'),
+(2, 5, 5, 5, 180.00, '2023-06-15', 'Cash');
+
+-- Populating the Messages table
+INSERT INTO Messages (user_id, artisan_id, request_id, message_text, date_sent) VALUES
+(1, 1, 1, 'When can you start?', '2023-06-10 10:00:00'),
+(2, 2, 2, 'Is the quote negotiable?', '2023-06-10 11:00:00'),
+(5, 3, 3, 'Can you bring your own tools?', '2023-06-10 12:00:00'),
+(1, 4, 4, 'Need it done asap', '2023-06-10 13:00:00'),
+(2, 5, 5, 'Are you available on weekends?', '2023-06-10 14:00:00');
+
+-- Populating the Notifications table
+INSERT INTO Notifications (user_id, message, date_sent, is_read) VALUES
+(1, 'Your request has been accepted', '2023-06-10 10:05:00', FALSE),
+(2, 'Your payment has been processed', '2023-06-10 11:10:00', TRUE),
+(5, 'You have a new message', '2023-06-10 12:20:00', FALSE),
+(1, 'Your request status has changed', '2023-06-10 13:15:00', FALSE),
+(2, 'You have received a new quote', '2023-06-10 14:30:00', TRUE);
+
+-- Populating the Reviews table
+INSERT INTO Reviews (user_id, artisan_id, rating, review_text, date_reviewed) VALUES
+(1, 1, 5, 'Great service!', '2023-06-10 15:00:00'),
+(2, 2, 4, 'Good job, but a bit pricey.', '2023-06-10 16:00:00'),
+(5, 3, 5, 'Very professional and timely.', '2023-06-10 17:00:00'),
+(1, 4, 3, 'Service was okay, not the best.', '2023-06-10 18:00:00'),
+(2, 5, 4, 'Did a good job with the repairs.', '2023-06-10 19:00:00');
