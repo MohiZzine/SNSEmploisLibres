@@ -235,6 +235,7 @@ require_once("../utils/database.php");
                             <h3><b>Company:</b> <?php echo $a["company_name"]; ?></h3>
                             <form method="post" action="profile.php">
                                 <input type="hidden" name="artisan_id" value="<?php echo $a["artisan_id"]; ?>">
+                    <input type="hidden" name="service_id" value="<?php echo $_POST["service_id"]; ?>">
                                 <button type="submit" id="artisan" name="artisan" class="btn">View Profile
                                 </button>
                             </form>
