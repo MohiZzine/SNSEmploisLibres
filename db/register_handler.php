@@ -19,7 +19,7 @@ if (isset($_POST['register'])) {
   // Validate name
   if (!valid_full_name(trim($_POST['full_name']))) {
     $full_name_err = "Name should not be empty!";
-    $errors['full_name'] = 'name=' . $full_name_err;
+    $errors['full_name'] = 'full_name=' . $full_name_err;
   } else {
     $full_name = htmlspecialchars(strip_tags(trim($_POST['full_name'])));
   }

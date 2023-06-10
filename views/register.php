@@ -45,11 +45,11 @@ if (isset($_GET['error'])) {
       <div class="w-full flex items-center justify-around">
         <div class="flex flex-col items-center justify-center">
           <input type="text" name="username" id="username" placeholder="Username" class="placeholder:italic placeholder-white bg-transparent border-b-2 font-3xl px-6 py-2 border-white text-md focus:outline-none focus:border-b-2 <?php echo isset($usernameErr) ? 'border-rose-500' : '' ?> transparent-auto-fill">
+          <small class="mt-2 m-3 text-center text-blue-700">
           <?php if (isset($usernameErr)) : ?>
-            <small class="mt-2 m-3 text-center text-pink-600">
               <?php echo isset($usernameErr) ? $usernameErr : ''; ?>
+              <?php endif; ?>
             </small>
-          <?php endif; ?>
         </div>
         <div class="flex flex-col items-center justify-center">
           <input type="text" name="full_name" id="full_name" placeholder="Full name" class="placeholder:italic placeholder-white bg-transparent border-b-2 font-3xl px-6 py-2 border-white text-md focus:outline-none focus:border-b-2 <?php echo isset($full_nameErr) ? 'border-rose-500' : null ?>">
