@@ -38,7 +38,7 @@ if (isset($_GET['password'])) {
       <button type="submit" id="login-btn" name="login" class="w-1/2 uppercase rounded-sm bg-green-500 text-white font-bold font-lg p-1.5 px-3 border-transparent hover:bg-green-600 hover:text-gray-200">Login</button>
       <div id="recovery" class="flex items-center justify-between gap-4 text-center">
         <p class="text-sm mx-6"><a href="views/register.php" class="hover:cursor-pointer hover:text-gray-500">Sign Up</a></p>
-        <p class="text-sm mx-6"><a href="forgot_password.php" class="hover:cursor-pointer hover:text-gray-500">Forgot Password</a></p>
+        <p class="text-sm mx-6"><a href="views/forgot_password.php" class="hover:cursor-pointer hover:text-gray-500">Forgot Password</a></p>
       </div>
     </form>
   </section>
