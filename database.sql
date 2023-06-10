@@ -6,9 +6,9 @@ CREATE TABLE IF NOT EXISTS users (
   username VARCHAR(50) NOT NULL UNIQUE,
   full_name VARCHAR(50) NOT NULL,
   email VARCHAR(75) NOT NULL UNIQUE,
-  password VARCHAR(255) NOT NULL UNIQUE,
+  password VARCHAR(255) NOT NULL,
   phone_number VARCHAR(25) NOT NULL UNIQUE,
-  role VARCHAR(10) ENUM ('user', 'artisan') NOT NULL DEFAULT 'user',
+  role ENUM ('user', 'artisan') NOT NULL DEFAULT 'user',
   PRIMARY KEY (user_id)
 );
 
@@ -128,14 +128,14 @@ CREATE TABLE IF NOT EXISTS Reviews (
 -- LeoMohi1987
 -- RonaldoSui1985
 
-INSERT INTO Users (username, full_name, email, password, phone) VALUES ('mohizine', 'Mohieddine Farid', 'farid.mohieddine@gmail.com', '$2y$10$ANvC.QckSes9a0vH62h33evuASZaDIXBPLV/A6ZurCT.2jcX6rtmi
+INSERT INTO Users (username, full_name, email, password, phone_number) VALUES ('mohizine', 'Mohieddine Farid', 'farid.mohieddine@gmail.com', '$2y$10$ANvC.QckSes9a0vH62h33evuASZaDIXBPLV/A6ZurCT.2jcX6rtmi
 ', '123456'),
 ('MohiZwine', 'Leonel Messi', 'leomessi@gmail.com', '$2y$10$63iJ6y.F1WwHMcVUHQ/l/eia65Q0yQZYCd3tSlrvVgqMKBDHry4aO
 ','6666666'),
-('Cristiano', 'Cristiano Ronaldo', '$2y$10$p4geEi6CFgXBkwHVhQl/Ke9BpNA67P7Cibl53nPvRATnJrYsUogZG
+('Cristiano', 'Cristiano Ronaldo', 'cris@gmail.com', '$2y$10$p4geEi6CFgXBkwHVhQl/Ke9BpNA67P7Cibl53nPvRATnJrYsUogZG
 ', '777777');
 
-INSERT INTO artisans (user_id, company_name, company_address, description, profile_picture) VALUES
+INSERT INTO artisans (artisan_id, user_id, company_name, company_address, description, profile_picture) VALUES
 (3, 'Bob Plumbing', '123 Plumber St, New York', 'Expert plumbing services.', 'bob_profile.jpg'),
 (4, 'Alice Electricians', '456 Electric Ave, New York', 'Reliable electrical services.', 'alice_profile.jpg'),
 (3, 'HandyFix', '789 Fixit Rd, New York', 'General handyman services.', 'handyfix_profile.jpg'),
@@ -168,7 +168,7 @@ INSERT INTO availabilities (artisan_id, date, start_time, end_time) VALUES
 
 -- Populating the requests table
 INSERT INTO requests (user_id, service_id, description, location) VALUES
-(1, 5, 'Need HVAC repair for central air.', '123 Main St, New York'),
+(1, 5, 'Need HVAC repair for central air.', ''),
 (2, 4, 'Leaky roof needs fixing.', '456 Elm St, New York'),
 (5, 3, 'Broken window and door repair.', '789 Oak St, New York'),
 (1, 2, 'Electrical wiring repair needed.', '111 Pine St, New York'),
