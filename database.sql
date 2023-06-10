@@ -3,12 +3,12 @@ USE sns;
 
 CREATE TABLE IF NOT EXISTS users (
   user_id INT NOT NULL AUTO_INCREMENT,
-  username VARCHAR(50) NOT NULL UNIQUE,
-  full_name VARCHAR(50) NOT NULL,
+  username VARCHAR(28) NOT NULL UNIQUE,
+  full_name VARCHAR(28) NOT NULL,
   email VARCHAR(75) NOT NULL UNIQUE,
   password VARCHAR(255) NOT NULL UNIQUE,
   phone_number VARCHAR(25) NOT NULL UNIQUE,
-  role VARCHAR(10) ENUM ('user', 'artisan') NOT NULL DEFAULT 'user',
+  role ENUM ('user', 'artisan') NOT NULL DEFAULT 'user',
   PRIMARY KEY (user_id)
 );
 
@@ -19,6 +19,8 @@ CREATE TABLE IF NOT EXISTS artisans (
   company_address VARCHAR(175) UNIQUE NOT NULL,
   description TEXT NOT NULL,
   profile_picture VARCHAR(255) NOT NULL,
+  certifications VARCHAR(255) NOT NULL,
+  location VARCHAR(255) NOT NULL,
   PRIMARY KEY (artisan_id),
   FOREIGN KEY (user_id) REFERENCES users(user_id)
 );
@@ -128,19 +130,19 @@ CREATE TABLE IF NOT EXISTS Reviews (
 -- LeoMohi1987
 -- RonaldoSui1985
 
-INSERT INTO Users (username, full_name, email, password, phone) VALUES ('mohizine', 'Mohieddine Farid', 'farid.mohieddine@gmail.com', '$2y$10$ANvC.QckSes9a0vH62h33evuASZaDIXBPLV/A6ZurCT.2jcX6rtmi
+INSERT INTO Users (username, full_name, email, password, phone_number) VALUES ('mohizine', 'Mohieddine Farid', 'farid.mohieddine@gmail.com', '$2y$10$ANvC.QckSes9a0vH62h33evuASZaDIXBPLV/A6ZurCT.2jcX6rtmi
 ', '123456'),
 ('MohiZwine', 'Leonel Messi', 'leomessi@gmail.com', '$2y$10$63iJ6y.F1WwHMcVUHQ/l/eia65Q0yQZYCd3tSlrvVgqMKBDHry4aO
 ','6666666'),
-('Cristiano', 'Cristiano Ronaldo', '$2y$10$p4geEi6CFgXBkwHVhQl/Ke9BpNA67P7Cibl53nPvRATnJrYsUogZG
+('Cristiano', 'Cristiano Ronaldo','Cristiano@gmail.com', '$2y$10$p4geEi6CFgXBkwHVhQl/Ke9BpNA67P7Cibl53nPvRATnJrYsUogZG
 ', '777777');
 
-INSERT INTO artisans (user_id, company_name, company_address, description, profile_picture) VALUES
-(3, 'Bob Plumbing', '123 Plumber St, New York', 'Expert plumbing services.', 'bob_profile.jpg'),
-(4, 'Alice Electricians', '456 Electric Ave, New York', 'Reliable electrical services.', 'alice_profile.jpg'),
-(3, 'HandyFix', '789 Fixit Rd, New York', 'General handyman services.', 'handyfix_profile.jpg'),
-(4, 'Roof Masters', '1011 Roof St, New York', 'Professional roofing services.', 'roofmasters_profile.jpg'),
-(3, 'Comfort HVAC', '1213 Heat Rd, New York', 'HVAC installation and repair.', 'comfort_profile.jpg');
+INSERT INTO artisans (user_id, company_name, company_address, description, profile_picture,certifications,location) VALUES
+(1, 'Bob Plumbing', '123 Plumber St, New York', 'Expert plumbing services.', 'bob_profile.jpg','certificat1','rabat'),
+(2, 'Alice Electricians', '456 Electric Ave, New York', 'Reliable electrical services.', 'alice_profile.jpg','certificat2','agadir'),
+(4, 'HandyFix', '789 Fixit Rd, New York', 'General handyman services.', 'handyfix_profile.jpg','certificat3','tanger'),
+(1, 'Roof Masters', '1011 Roof St, New York', 'Professional roofing services.', 'roofmasters_profile.jpg','certificat4','fes'),
+(2, 'Comfort HVAC', '1213 Heat Rd, New York', 'HVAC installation and repair.', 'comfort_profile.jpg','certificat5','meknes');
 
 -- Populating the services table
 INSERT INTO services (service_name, service_description) VALUES
