@@ -6,7 +6,7 @@ CREATE TABLE IF NOT EXISTS users (
   username VARCHAR(50) NOT NULL UNIQUE,
   full_name VARCHAR(50) NOT NULL,
   email VARCHAR(75) NOT NULL UNIQUE,
-  password VARCHAR(255) NOT NULL,
+  password VARCHAR(255) NOT NULL UNIQUE,
   phone_number VARCHAR(25) NOT NULL UNIQUE,
   role VARCHAR(10) ENUM ('user', 'artisan') NOT NULL DEFAULT 'user',
   PRIMARY KEY (user_id)

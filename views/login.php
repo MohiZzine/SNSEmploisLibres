@@ -15,6 +15,10 @@ if (isset($_GET['email'])) {
   $email = $_GET['email'];
 }
 
+if (isset($_GET['password'])) {
+  $password = $_GET['password'];
+}
+
 ?>
 
 <link rel="stylesheet" href="../styles/main.css">
