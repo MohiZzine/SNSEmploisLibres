@@ -233,8 +233,6 @@ require_once("utils/database.php");
   <script src="assets/js/sidebarmenu.js"></script>
   <script src="assets/js/app.min.js"></script>
   <script src="assets/libs/simplebar/dist/simplebar.js"></script>
-</body>
 
-</html>
 
-<?php include 'includes/footer.php'; ?>
+<?php include '../includes/footer.php'; ?>
