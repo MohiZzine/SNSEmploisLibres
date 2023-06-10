@@ -52,8 +52,4 @@ require_once("utils/database.php");
   <script src="assets/js/app.min.js"></script>
   <script src="assets/libs/simplebar/dist/simplebar.js"></script>
 
-<<<<<<< HEAD
-
-=======
->>>>>>> fa395c0bfb2257685fe3b243526bf26162d0872c
 <?php include 'includes/footer.php'; ?>
