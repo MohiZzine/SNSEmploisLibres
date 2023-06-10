@@ -33,6 +33,7 @@ if (isset($_GET['phone_number'])) {
 if (isset($_GET['error'])) {
   $error = $_GET['error'];
 }
+
 ?>
 <link rel="stylesheet" href="../styles/main.css">
 <link rel="stylesheet" href="../styles/input.css">
