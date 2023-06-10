@@ -128,9 +128,9 @@ CREATE TABLE IF NOT EXISTS Reviews (
 -- LeoMohi1987
 -- RonaldoSui1985
 
--- INSERT INTO Users (username, full_name, email, password, phone) VALUES ('mohizine', 'Mohieddine Farid', 'farid.mohieddine@gmail.com', '$2y$10$ANvC.QckSes9a0vH62h33evuASZaDIXBPLV/A6ZurCT.2jcX6rtmi
--- ', '123456'),
--- ('MohiZwine', 'Leonel Messi', 'leomessi@gmail.com', '$2y$10$63iJ6y.F1WwHMcVUHQ/l/eia65Q0yQZYCd3tSlrvVgqMKBDHry4aO
--- ','6666666'),
--- ('Cristiano', 'Cristiano Ronaldo', '$2y$10$p4geEi6CFgXBkwHVhQl/Ke9BpNA67P7Cibl53nPvRATnJrYsUogZG
--- ', '777777');
+INSERT INTO Users (username, full_name, email, password, phone) VALUES ('mohizine', 'Mohieddine Farid', 'farid.mohieddine@gmail.com', '$2y$10$ANvC.QckSes9a0vH62h33evuASZaDIXBPLV/A6ZurCT.2jcX6rtmi
+', '123456'),
+('MohiZwine', 'Leonel Messi', 'leomessi@gmail.com', '$2y$10$63iJ6y.F1WwHMcVUHQ/l/eia65Q0yQZYCd3tSlrvVgqMKBDHry4aO
+','6666666'),
+('Cristiano', 'Cristiano Ronaldo', '$2y$10$p4geEi6CFgXBkwHVhQl/Ke9BpNA67P7Cibl53nPvRATnJrYsUogZG
+', '777777');
