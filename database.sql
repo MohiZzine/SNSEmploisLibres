@@ -143,7 +143,7 @@ INSERT INTO Users (user_id, username, full_name, email, password, phone_number) 
 (5, 'Ayman', 'Ayman Messi', 'ayman@gmail.com', '$2y$10$63iJ6y.F1WwHMcVUHQ/l/ei65Q0yQZYCd3tSlrvVgqMKBDHry4aO
 ','66616666');
 
-INSERT INTO artisans (user_id, company_name, company_address, description, profile_picture,certifications,location, price) VALUES
+INSERT INTO artisans (user_id, company_name, company_address, description, profile_picture,certifications,location) VALUES
 (1, 'Bob Plumbing', '123 Plumber St, New York', 'Expert plumbing services.', 'https://img.freepik.com/free-photo/wide-angle-shot-single-tree-growing-clouded-sky-during-sunset-surrounded-by-grass_181624-22807.jpg?w=900&t=st=1686412681~exp=1686413281~hmac=6689aebfa8a06f0a67001392aac6c9b305300536f9bce311badce730320c1434','certificat1','rabat'),
 (2, 'Alice Electricians', '456 Electric Ave, New York', 'Reliable electrical services.', 'https://img.freepik.com/free-photo/beautiful-scenery-green-valley-near-alp-mountains-austria-cloudy-sky_181624-6979.jpg?size=626&ext=jpg&ga=GA1.1.2144948786.1684935304&semt=sph','certificat2','agadir'),
 (3, 'HandyFix', '789 Fixit Rd, New York', 'General handyman services.', 'handyfix_profile.jpg','https://img.freepik.com/free-photo/beautiful-scenery-pathway-forest-with-trees-covered-with-frost_181624-42376.jpg?size=626&ext=jpg&ga=GA1.2.2144948786.1684935304&semt=sph','tanger'),
@@ -159,7 +159,7 @@ INSERT INTO services (service_name, service_description) VALUES
 ('HVAC', 'Heating, ventilation, and air conditioning services.');
 
 -- Populating the artisan_services table
-INSERT INTO artisan_services (artisan_id, service_id) VALUES
+INSERT INTO artisan_services (artisan_id, service_id, price) VALUES
 (1, 1, 500),
 (2, 2, 650),
 (3, 3, 780),
