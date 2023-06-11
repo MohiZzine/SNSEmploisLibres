@@ -10,18 +10,23 @@ $password = $password_err = "";
 if (isset($_POST['login'])) {
   $errors = array();
 
+  
   // Validate username / email
-  if (!valid_username_or_email(trim($_POST['username_or_email']))) {
+  if (empty(trim($_POST['username_or_email']))) {
     $username_or_email_err = "Username or Email should not be empty!";
-    $errors['username_or_email'] = 'username_or_email=' . $username_or_email_err;
+    // $errors['username_or_email'] = 'error=' . $username_or_email_err;
+    header('Location: ../index.php?error=' . $username_or_email_err);
+    exit();
   } else {
     $username_or_email = trim(htmlspecialchars(strip_tags($_POST['username_or_email'])));
   }
 
   // Validate password
-  if (!valid_password($_POST['password'])) {
+  if (empty(trim($_POST['password']))) {
     $password_err = "Password should not be empty!";
-    $errors['password'] = 'password=' . $password_err;
+    // $errors['password'] = 'error=' . $password_err;
+    header('Location: ../index.php?error=' . $password_err);
+    exit();
   } else {
     $password = trim(htmlspecialchars(strip_tags($_POST['password'])));
   }
@@ -37,7 +42,7 @@ if (isset($_POST['login'])) {
   $user = new User($db->pdo);
   $login = $user->login($username_or_email, $password);
   if (!$login['login']) {
-    header('Location: ../index.php?error=' . $error);
+    header('Location: ../index.php?error=' . $login['message']);
     exit();
   }
 
