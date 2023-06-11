@@ -147,11 +147,11 @@ INSERT INTO Users (user_id, username, full_name, email, password, phone_number, 
 (3, 'Cristiano', 'Cristiano Ronaldo','Cristiano@gmail.com', '$2y$10$p4geEi6CFgXBkwHVhQl/Ke9BpNA67P7Cibl53nPvRATnJrYsUogZG', '0712345677', 'artisan'),
 (4, 'Imane', 'Imane Rahali', 'imane@gmail.com', '$2y$10$63iJ6y.F1WwHMcVUHQ/l/ea65Q0yQZYCd3tSlrvVgqMKBDHry4aO','0712345676', 'artisan'),
 (5, 'Ayman', 'Ayman Messi', 'ayman@gmail.com', '$2y$10$63iJ6y.F1WwHMcVUHQ/l/ei65Q0yQZYCd3tSlrvVgqMKBDHry4aO','07123456785', 'artisan'),
-(6, 'zineb', 'Zineb Abercha', 'zineb@gmail.com', '$2y$10$lJMGdpE0oq3Bo5xWzR0nZus8vPqGCcIYnHKDBbQ7t/075t2krvOge','0722345674', 'user'),
-(7, 'ayoub', 'Ayoub Abercha', 'ayoub@gmail.com', '$2y$10$HCu84h85MCxYtC6RCcmm2.pOHPHCr..KXm6H0HgzwDedYDBp.sTpu','0712777674', 'user'),
-(8, 'hassan', 'Hassan Maguouani', 'hassan@gmail.com', '$2y$10$PsnHwSLw4P7ZMjmeqhuyYuabFGFx36B8OlT8yWLYJ1j3R3ZTXWlnC','0718345674', 'user'),
-(9, 'mouna', 'Mouna Ait Bensalem', 'mouna@gmail.com', '$2y$10$fgZk9VMmE1c0nE7Aq0punuPxd4hyUhcU9TpURRD48.qFGwhXT1TY2','0712111174', 'user'),
-(10, 'karim', 'Karim Farid', 'karim@gmail.com', '$2y$10$VVjnaNq9IeYFP77FZ5iEjuyzVI6sYeVKqsKptaa9zSQpINy4eU3hO','0711111174', 'user');
+(6, 'zineb', 'Zineb Abercha', 'zineb@gmail.com', '$2y$10$9aRB3frDfKQoghP7tnqcyu4lV21RTqWsTE4V6ppyhXZruni3s4f7a','0722345674', 'user'),
+(7, 'ayoub', 'Ayoub Abercha', 'ayoub@gmail.com', '$2y$10$H6psMtAiv2CDSObd6ed0ducet1P5HjR0yUkeAHi5FAlb6uPStM55G','0712777674', 'user'),
+(8, 'hassan', 'Hassan Maguouani', 'hassan@gmail.com', '$2y$10$d2v9NH/OcnhKAGFSIIoajuXG8o.D6RbvmrfakjpM6Uucm/xZUCbBS','0718345674', 'user'),
+(9, 'mouna', 'Mouna Ait Bensalem', 'mouna@gmail.com', '$2y$10$oik81J94pzHBATX98liUWu3YVSjZfFXZGxCHVa/tYyUiOuBj7zhOC','0712111174', 'user'),
+(10, 'karim', 'Karim Farid', 'karim@gmail.com', '$2y$10$bpbBmgXmocgMKPrHBETg.uH9eoJJWcBVQsNVRgToQgIe.nsQLzZ8C','0711111174', 'user');
 
 INSERT INTO artisans (user_id, company_name, company_address, description, profile_picture,certifications,location) VALUES
 (1, 'Bob Plumbing', '123 Plumber St, New York', 'Expert plumbing services.', 'https://img.freepik.com/free-photo/wide-angle-shot-single-tree-growing-clouded-sky-during-sunset-surrounded-by-grass_181624-22807.jpg?w=900&t=st=1686412681~exp=1686413281~hmac=6689aebfa8a06f0a67001392aac6c9b305300536f9bce311badce730320c1434','certificat1','rabat'),
