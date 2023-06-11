@@ -33,6 +33,15 @@ CREATE TABLE IF NOT EXISTS services (
   PRIMARY KEY (service_id)
 );
 
+CREATE TABLE IF NOT EXISTS subservices (
+  subservice_id INT AUTO_INCREMENT,
+  subservice_name VARCHAR(255),
+  subservice_description VARCHAR(255),
+  service_id INT,
+  PRIMARY KEY (subservice_id),
+  FOREIGN KEY (service_id) REFERENCES services(service_id)
+);
+
 CREATE TABLE IF NOT EXISTS artisan_services (
   artisan_id INT,
   subservice_id INT,
@@ -128,31 +137,6 @@ CREATE TABLE IF NOT EXISTS Reviews (
   FOREIGN KEY (artisan_id) REFERENCES Artisans(artisan_id)
 );
 
-CREATE TABLE IF NOT EXISTS subservices (
-  subservice_id INT AUTO_INCREMENT,
-  subservice_name VARCHAR(255),
-  subservice_description VARCHAR(255),
-  service_id INT,
-  PRIMARY KEY (subservice_id),
-  FOREIGN KEY (service_id) REFERENCES services(service_id)
-);
-
-INSERT INTO subservices(subservice_name, subservice_description, service_id) VALUES ("Sewer line repair/replacement", "Repair or replacement of damaged or clogged sewer lines to restore proper drainage", 1),
-("Water heater installation/repair", "Installation or repair of water heating systems for hot water supply", 1),
-("Bathroom/kitchen remodel plumbing", "Bathroom and kitchen remodeling projects, including fixture installation and plumbing reconfiguration.", 1),
-("Electrical panel upgrade", "Upgrading the electrical panel to increase capacity and ensure safe and efficient distribution of electricity", 2),
-("Generator installation", "Installation of backup power generators to provide electricity during power outages", 2),
-("Troubleshooting electrical faults", "Identifying and fixing electrical issues such as circuit faults, short circuits, or electrical malfunctions", 2),
-("Tile installation/repair", "Installation or repair of various types of tiles, such as ceramic, porcelain, or natural stone, for floors, walls, or backsplashes", 3),
-("Drywall installation/repair", "Installation or repair of drywall, which is essential for creating walls and ceilings in buildings", 3),
-("Deck repair/staining", "Repairing damaged or deteriorated deck structures and applying protective staining to enhance their appearance and longevity", 3),
-("Roof shingle replacement", "Removal and replacement of worn or damaged roof shingles to maintain a watertight and visually appealing roof", 4),
-("Chimney repair", "Repair of chimney structures to ensure proper ventilation and prevent leaks or structural issues", 4),
-("Roof flashing repair/replacement", "Repairing or replacing roof flashing, which prevents water penetration at roof intersections or protrusions", 4),
-("Central air conditioner installation", "Installation of a centralized cooling system to provide efficient and even cooling throughout a building", 5),
-("Furnace installation/repair", "Installation or repair of heating systems, such as furnaces, to ensure effective and reliable heat distribution", 5),
-("Ductwork design/installation", "Designing and installing ductwork systems for proper air distribution and ventilation throughout a building", 5);
-
 
 -- MohaZayani2003
 -- LeoMohi1987
@@ -171,8 +155,6 @@ INSERT INTO Users (user_id, username, full_name, email, password, phone_number, 
 (6, 'user', 'User User', 'user@gmail.com', '$2y$10$63iJ6y.F1WwHMcVUHQ/l/ei65Q0yQZYCd3tSlrvVgqMKBDHry4aO
 ','0712345674', 'user');
 
-
-
 INSERT INTO artisans (user_id, company_name, company_address, description, profile_picture,certifications,location) VALUES
 (1, 'Bob Plumbing', '123 Plumber St, New York', 'Expert plumbing services.', 'https://img.freepik.com/free-photo/wide-angle-shot-single-tree-growing-clouded-sky-during-sunset-surrounded-by-grass_181624-22807.jpg?w=900&t=st=1686412681~exp=1686413281~hmac=6689aebfa8a06f0a67001392aac6c9b305300536f9bce311badce730320c1434','certificat1','rabat'),
 (2, 'Alice Electricians', '456 Electric Ave, New York', 'Reliable electrical services.', 'https://img.freepik.com/free-photo/beautiful-scenery-green-valley-near-alp-mountains-austria-cloudy-sky_181624-6979.jpg?size=626&ext=jpg&ga=GA1.1.2144948786.1684935304&semt=sph','certificat2','agadir'),
@@ -187,6 +169,23 @@ INSERT INTO services (service_name, service_description) VALUES
 ('Handyman', 'General repair and maintenance.'),
 ('Roofing', 'Roof repair and installation.'),
 ('HVAC', 'Heating, ventilation, and air conditioning services.');
+
+INSERT INTO subservices(subservice_name, subservice_description, service_id) VALUES ("Sewer line repair/replacement", "Repair or replacement of damaged or clogged sewer lines to restore proper drainage", 1),
+("Water heater installation/repair", "Installation or repair of water heating systems for hot water supply", 1),
+("Bathroom/kitchen remodel plumbing", "Bathroom and kitchen remodeling projects, including fixture installation and plumbing reconfiguration.", 1),
+("Electrical panel upgrade", "Upgrading the electrical panel to increase capacity and ensure safe and efficient distribution of electricity", 2),
+("Generator installation", "Installation of backup power generators to provide electricity during power outages", 2),
+("Troubleshooting electrical faults", "Identifying and fixing electrical issues such as circuit faults, short circuits, or electrical malfunctions", 2),
+("Tile installation/repair", "Installation or repair of various types of tiles, such as ceramic, porcelain, or natural stone, for floors, walls, or backsplashes", 3),
+("Drywall installation/repair", "Installation or repair of drywall, which is essential for creating walls and ceilings in buildings", 3),
+("Deck repair/staining", "Repairing damaged or deteriorated deck structures and applying protective staining to enhance their appearance and longevity", 3),
+("Roof shingle replacement", "Removal and replacement of worn or damaged roof shingles to maintain a watertight and visually appealing roof", 4),
+("Chimney repair", "Repair of chimney structures to ensure proper ventilation and prevent leaks or structural issues", 4),
+("Roof flashing repair/replacement", "Repairing or replacing roof flashing, which prevents water penetration at roof intersections or protrusions", 4),
+("Central air conditioner installation", "Installation of a centralized cooling system to provide efficient and even cooling throughout a building", 5),
+("Furnace installation/repair", "Installation or repair of heating systems, such as furnaces, to ensure effective and reliable heat distribution", 5),
+("Ductwork design/installation", "Designing and installing ductwork systems for proper air distribution and ventilation throughout a building", 5);
+
 
 -- Populating the artisan_services table
 INSERT INTO artisan_services (artisan_id, subservice_id, price) VALUES
