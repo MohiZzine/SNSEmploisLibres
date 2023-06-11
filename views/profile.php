@@ -62,10 +62,13 @@ require_once("../utils/database.php");
         }
         echo '</table>';
         echo '<form action="services.php" method="post">';
+        echo '<input type="hidden" name="service_id" value=' . $_POST["service_id"] . '>';
+        echo '<input type="hidden" name="subservice_id" value=' . $_POST["subservice_id"] . '>';
         echo '<input type="submit" value="Back">';
         echo '</form>';
         echo '<form method="post" action="devis.php">';
         echo '<input type="hidden" name="service_id" value=' . $_POST["service_id"] . '>';
+        echo '<input type="hidden" name="subservice_id" value=' . $_POST["subservice_id"] . '>';
         echo '<input type="hidden" name="artisan_id" value=' . $_POST["artisan_id"] . '>';
         echo '<input type="submit" value="Choose">';
         echo '</form>';

@@ -4,8 +4,54 @@ session_start();
 //     header('location: ../index.php');
 //     exit();
 // }
-// $_SESSION['user_id'] = 1;
+$_SESSION['user_id'] = 1;
 require_once("../utils/database.php");
+
+$ConnectingDB = $GLOBALS['connexion'];
+
+// If the request is accepted
+if (isset($_POST['accept_request'])) {
+
+    $request_id = $_POST["request_id"];
+    $user_id = $_POST["user_id"];
+
+    // Change thhe status of the request to 'accepted'
+    $accept = "UPDATE requests SET status='accepted' WHERE request_id='$request_id'";
+    $stmt = $ConnectingDB->prepare($accept);
+    $stmt->execute();
+
+    // Send a notification to the user
+    $notification = "INSERT INTO notifications(user_id, message) VALUES ('$user_id','Your request has been accepted')";
+    $stmt2 = $ConnectingDB->prepare($notification);
+    $stmt2->execute();
+
+
+    if ($stmt && $stmt2) {
+        echo "<script>alert('Request Accepted!')</script>";
+    }
+}
+
+// If the request is declined
+if (isset($_POST['decline_request'])) {
+
+    $request_id = $_POST["request_id"];
+    $user_id = $_POST["user_id"];
+
+    // Change the status of the request to 'declined'
+    $accept = "UPDATE requests SET status='declined' WHERE request_id='$request_id'";
+    $stmt = $ConnectingDB->prepare($accept);
+    $stmt->execute();
+
+    // Send a notification to the user
+    $notification = "INSERT INTO notifications(user_id, message) VALUES ('$user_id','Your request has been declined')";
+    $stmt2 = $ConnectingDB->prepare($notification);
+    $stmt2->execute();
+
+
+    if ($stmt && $stmt2) {
+        echo "<script>alert('Request Accepted!')</script>";
+    }
+}
 ?>
 
 <!doctype html>
@@ -50,14 +96,15 @@ require_once("../utils/database.php");
                                 <?php echo "<p><b>Request from: </b>" . $pending_request['full_name'] . '</p>
                             <p><b>Service: </b>' . $subservice_info['service_name'] . '</p>
                             <p><b>Subservice: </b>' . $subservice_info['subservice_name'] . '</p>
-                            <p><b>Price: </b>' . $cost['price'] . ' MAD</p>'; ?>
+                            <p><b>Price: </b>' . $cost['price'] . ' MAD</p><p><b>Phone number: </b>' . $pending_request['phone_number'] . '</p>'; ?>
                             </td>
                             <td>
                                 <form method="post">
                                     <input type="hidden" name="request_id"
                                         value="<?php echo $pending_request["request_id"]; ?>">
+                                    <input type="hidden" name="user_id" value="<?php echo $pending_request["user_id"]; ?>">
                                     <div style="display:inline;">
-                                        <button type="submit" class="reject_btn btn" name="reject_request">
+                                        <button type="submit" class="decline_btn btn" name="decline_request">
                                             <i class="delete-icon material-icons">delete</i>
                                         </button>
                                         <button type="submit" class="accept_btn btn" name="accept_request">

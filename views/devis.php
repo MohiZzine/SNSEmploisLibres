@@ -33,7 +33,7 @@ require_once("../utils/database.php");
 
       <?php
       $ConnectingDB = $GLOBALS['pdo'];
-      $artisan_services = $ConnectingDB->query("SELECT * FROM artisan_services WHERE artisan_id =  " . $_POST['artisan_id'] . " AND service_id = " . $_POST['service_id']);
+      $artisan_services = $ConnectingDB->query("SELECT * FROM artisan_services WHERE artisan_id =  " . $_POST['artisan_id'] . " AND subservice_id = " . $_POST['subservice_id']);
       $artisan_service = $artisan_services->fetch(PDO::FETCH_ASSOC);
       ?>
       <div class="d-flex align-items-center justify-content-between gap-2">
