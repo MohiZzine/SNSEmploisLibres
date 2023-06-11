@@ -15,6 +15,46 @@ require_once("../utils/database.php");
     integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"> -->
     <link rel="stylesheet" href="../styles/dashboard.css" />
     <link rel="stylesheet" href="../styles/cards.css" />
+    <script>
+        var typingTimer;
+        var doneTypingInterval = 500; // Adjust the delay as needed
+
+        function showHint() {
+            clearTimeout(typingTimer);
+            typingTimer = setTimeout(fetchSuggestions, doneTypingInterval);
+        }
+        function fetchSuggestions() {
+          var price = document.getElementsByName("price")[0].value;
+          var serviceId = document.getElementsByName("service_id")[0].value;
+          var subserviceId = document.getElementsByName("subservice_id")[0].value;
+          var location = document.getElementsByName("location")[0].value;
+          var xhttp = new XMLHttpRequest();
+          xhttp.onreadystatechange = function() {
+              if (this.readyState == 4 && this.status == 200) {
+                  document.getElementById("card").innerHTML = this.responseText;
+              }
+          };
+          xhttp.open("GET", "getSuggestions.php?price=" + price + "&service_id=" + encodeURIComponent(serviceId) + "&subservice_id=" + encodeURIComponent(subserviceId) + "&location=" + encodeURIComponent(location), true);
+          xhttp.send()
+      }
+      function showHint1(){
+        var rating = document.getElementsByName("rating")[0].value;
+        var serviceId = document.getElementsByName("service_id")[0].value;
+        var subserviceId = document.getElementsByName("subservice_id")[0].value;
+        var location = document.getElementsByName("location")[0].value;
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                document.getElementById("card").innerHTML = this.responseText;
+            }
+        };
+        xhttp.open("GET", "getSuggestions1.php?rating=" + rating + "&service_id=" + encodeURIComponent(serviceId) + "&subservice_id=" + encodeURIComponent(subserviceId) + "&location=" + encodeURIComponent(location), true);
+        xhttp.send()
+      }
+      
+
+
+    </script>
 </head>
 
 <body>
@@ -40,10 +80,44 @@ require_once("../utils/database.php");
                     $stmt = $ConnectingDB->prepare($q);
                     $stmt->execute();
                     if ($stmt->rowCount() != 0) {
+                        echo '<h3><b>Enter a price:</b> </h3>';
+                        echo '<p> Suggestions: <span id="txtHint"></span></p>';          
+                        $serviceId = $_POST['service_id'];
+                        $subserviceId = $_POST['subservice_id'];
+                        $location = $_POST['location'];?>
+                        <form method="GET" action="">;
+                        <input type="number" name="price" oninput="showHint()" >;
+                        <input type="hidden" name="service_id" value="<?php echo $serviceId; ?>">
+                        <input type="hidden" name="subservice_id" value="<?php echo $subserviceId; ?>">
+                        <input type="hidden" name="location" value="<?php echo $location; ?>">
+
+                        </form>;
+                    
+
+                        
+
+
+                        <?php
+                                      echo "<br>";
+                                      echo '<h3><b>Select a rating:</b> </h3>';
+                                      echo '<form method="GET" action="">';
+                                      echo 'select rating: <select name="rating" onchange="showHint1()">';
+                                      echo '<option disabled selected>Select a rating</option>';
+                                      echo '<option value="1">1</option>';
+                                      echo '<option value="2">2</option>';
+                                      echo '<option value="3">3</option>';
+                                      echo '<option value="4">4</option>';
+                                      echo '<option value="5">5</option>';
+                                      echo '</select>';
+                                      echo '<input type="hidden" name="service_id" value="' . $service . '">';
+                                      echo '<p> Suggestions: <span id="txtHint1"></span></p>';          
+
+
+                        
                         while ($a = $stmt->fetch(PDO::FETCH_ASSOC)) {
                             ?>
 
-                            <div class="card">
+                            <div class="card" id ="card">
 
                                 <?php
                                 if ($a["profile_picture"]) {
@@ -81,6 +155,7 @@ require_once("../utils/database.php");
 
         </div>
     </div>
+
     </div>
     </div>
     </div>

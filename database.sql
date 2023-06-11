@@ -118,11 +118,13 @@ CREATE TABLE IF NOT EXISTS Messages (
 CREATE TABLE IF NOT EXISTS Notifications (
   notification_id INT AUTO_INCREMENT,
   user_id INT,
+  request_id INT,
   message TEXT NOT NULL,
   date_sent DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
   is_read BOOLEAN DEFAULT FALSE,
   PRIMARY KEY (notification_id),
-  FOREIGN KEY (user_id) REFERENCES Users(user_id)
+  FOREIGN KEY (user_id) REFERENCES Users(user_id),
+  FOREIGN KEY (request_id) REFERENCES Requests(request_id)
 );
 
 CREATE TABLE IF NOT EXISTS Reviews (
@@ -147,7 +149,11 @@ INSERT INTO Users (user_id, username, full_name, email, password, phone_number, 
 (3, 'Cristiano', 'Cristiano Ronaldo','Cristiano@gmail.com', '$2y$10$p4geEi6CFgXBkwHVhQl/Ke9BpNA67P7Cibl53nPvRATnJrYsUogZG', '0712345677', 'artisan'),
 (4, 'Imane', 'Imane Rahali', 'imane@gmail.com', '$2y$10$63iJ6y.F1WwHMcVUHQ/l/ea65Q0yQZYCd3tSlrvVgqMKBDHry4aO','0712345676', 'artisan'),
 (5, 'Ayman', 'Ayman Messi', 'ayman@gmail.com', '$2y$10$63iJ6y.F1WwHMcVUHQ/l/ei65Q0yQZYCd3tSlrvVgqMKBDHry4aO','07123456785', 'artisan'),
-(6, 'user', 'User User', 'user@gmail.com', '$2y$10$63iJ6y.F1WwHMcVUHQ/l/ei65Q0yQZYCd3tSlrvVgqMKBDHry4aO','0712345674', 'user');
+(6, 'zineb', 'Zineb Abercha', 'zineb@gmail.com', '$2y$10$9aRB3frDfKQoghP7tnqcyu4lV21RTqWsTE4V6ppyhXZruni3s4f7a','0722345674', 'user'),
+(7, 'ayoub', 'Ayoub Abercha', 'ayoub@gmail.com', '$2y$10$H6psMtAiv2CDSObd6ed0ducet1P5HjR0yUkeAHi5FAlb6uPStM55G','0712777674', 'user'),
+(8, 'hassan', 'Hassan Maguouani', 'hassan@gmail.com', '$2y$10$d2v9NH/OcnhKAGFSIIoajuXG8o.D6RbvmrfakjpM6Uucm/xZUCbBS','0718345674', 'user'),
+(9, 'mouna', 'Mouna Ait Bensalem', 'mouna@gmail.com', '$2y$10$oik81J94pzHBATX98liUWu3YVSjZfFXZGxCHVa/tYyUiOuBj7zhOC','0712111174', 'user'),
+(10, 'karim', 'Karim Farid', 'karim@gmail.com', '$2y$10$bpbBmgXmocgMKPrHBETg.uH9eoJJWcBVQsNVRgToQgIe.nsQLzZ8C','0711111174', 'user');
 
 INSERT INTO artisans (user_id, company_name, company_address, description, profile_picture,certifications,location) VALUES
 (1, 'Bob Plumbing', '123 Plumber St, New York', 'Expert plumbing services.', 'https://img.freepik.com/free-photo/wide-angle-shot-single-tree-growing-clouded-sky-during-sunset-surrounded-by-grass_181624-22807.jpg?w=900&t=st=1686412681~exp=1686413281~hmac=6689aebfa8a06f0a67001392aac6c9b305300536f9bce311badce730320c1434','certificat1','rabat'),
@@ -209,12 +215,12 @@ INSERT INTO availabilities (artisan_id, date, start_time, end_time) VALUES
 
 -- Populating the requests table
 INSERT INTO requests (user_id, subservice_id, artisan_id) VALUES
-(1, 1, 1),
-(1, 2, 1),
-(2, 10, 4),
-(5, 9, 3),
-(1, 5, 2),
-(2, 3, 1);
+(6, 1, 1),
+(6, 2, 1),
+(7, 10, 4),
+(10, 9, 3),
+(8, 5, 2),
+(9, 3, 1);
 
 -- Populating the quotes table
 INSERT INTO quotes (artisan_id, request_id, quote_amount, quote_description) VALUES
@@ -241,12 +247,12 @@ INSERT INTO Messages (user_id, artisan_id, request_id, message_text, date_sent) 
 (2, 5, 5, 'Are you available on weekends?', '2023-06-10 14:00:00');
 
 -- Populating the Notifications table
-INSERT INTO Notifications (user_id, message, date_sent, is_read) VALUES
-(1, 'Your request has been accepted', '2023-06-10 10:05:00', FALSE),
-(2, 'Your payment has been processed', '2023-06-10 11:10:00', TRUE),
-(5, 'You have a new message', '2023-06-10 12:20:00', FALSE),
-(1, 'Your request status has changed', '2023-06-10 13:15:00', FALSE),
-(2, 'You have received a new quote', '2023-06-10 14:30:00', TRUE);
+-- INSERT INTO Notifications (user_id, message, date_sent, is_read) VALUES
+-- (6, 'Your request has been accepted', '2023-06-10 10:05:00', FALSE),
+-- (7, 'Your payment has been processed', '2023-06-10 11:10:00', TRUE),
+-- (8, 'You have a new message', '2023-06-10 12:20:00', FALSE),
+-- (9, 'Your request status has changed', '2023-06-10 13:15:00', FALSE),
+-- (10, 'You have received a new quote', '2023-06-10 14:30:00', TRUE);
 
 -- Populating the Reviews table
 INSERT INTO Reviews (user_id, artisan_id, rating, review_text, date_reviewed) VALUES

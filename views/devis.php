@@ -1,11 +1,28 @@
-<?php session_start();
+<?php 
+session_start();
 if (!isset($_SESSION['user_id'])) {
-  // var_dump($_SESSION);
-  // header('Location: login.php');
+  header('Location: login.php');
   exit();
 }
 require_once("../utils/database.php");
-// require_once '../classes/database.class.php';
+
+$ConnectingDB = $GLOBALS['pdo'];
+
+// If the user confirms the request
+if (isset($_POST['confirm'])) {
+
+    $user_id = $_SESSION["user_id"];
+    $subservice_id = $_POST["subservice_id"];
+    $artisan_id = $_POST["artisan_id"];
+
+    $notification = "INSERT INTO requests(user_id, subservice_id, artisan_id) VALUES ('$user_id', '$subservice_id', '$artisan_id')";
+    $stmt = $ConnectingDB->prepare($notification);
+    $stmt->execute();
+
+    if ($stmt) {
+        echo "<script>alert('Request sent!')</script>";
+    }
+}
 ?>
 <!doctype html>
 <html lang="en">
@@ -14,9 +31,6 @@ require_once("../utils/database.php");
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>SNS Emplois Libres</title>
-  <!-- <link rel="stylesheet" href="styles/main.css"> -->
-  <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
-    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"> -->
   <link rel="stylesheet" href="../styles/dashboard.css" />
   <link rel="stylesheet" href="../styles/cards.css" />
 </head>
@@ -42,13 +56,11 @@ require_once("../utils/database.php");
           <?php echo $artisan_service['price'] ?>
         </p>
       </div>
-      <button type="submit">Demander une intervention</button>
-      <!-- <div class="card">
-                  <form method="post" action="views/services.php">
-                    <button type="submit" id="service" name="service" class="btn">
-                    </button>
-                  </form>
-                </div> -->
+      <form method="post" action="">
+        <input type="hidden" name="subservice_id" value="<?php $_POST["subservice_id"]; ?>">
+        <input type="hidden" name="artisan_id" value="<?php $_POST["artisan_id"]; ?>">
+        <button type="submit" name="confirm">Demander une intervention</button>
+      </form>
     </div>
   </div>
   </div>
