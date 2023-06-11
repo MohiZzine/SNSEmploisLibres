@@ -1,6 +1,5 @@
 <!-- Sidebar Start -->
-<aside class="left-sidebar">
-  <form action="../db/user_dashboard_handler.php" method="post"></form>
+<aside class="left-sidebar" style="height: 100vh;">
       <!-- Sidebar scroll-->
       <div>
         <div class="brand-logo d-flex align-items-center justify-content-between">
@@ -12,7 +11,7 @@
           </div>
         </div>
         <!-- Sidebar navigation-->
-        <nav class="sidebar-nav scroll-sidebar" data-simplebar="" style="font-size: 2em;">
+        <nav class="sidebar-nav scroll-sidebar" data-simplebar="" style="font-size: 2em; overflow: hidden;">
           <ul id="sidebarnav">
             <li class="nav-small-cap">
               <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
@@ -28,43 +27,7 @@
             </li>
             <li class="nav-small-cap">
               <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
-              <span class="hide-menu">ACCOUNT SETTINGS</span>
-            </li>
-            <li class="sidebar-item">
-              <a class="sidebar-link" href="./ui-alerts.html" aria-expanded="false">
-                <span>
-                  <i class="ti ti-alert-circle"></i>
-                </span>
-                <span class="hide-menu">Change Username</span>
-              </a>
-            </li>
-            <li class="sidebar-item">
-              <a class="sidebar-link" href="./ui-card.html" aria-expanded="false">
-                <span>
-                  <i class="ti ti-cards"></i>
-                </span>
-                <span class="hide-menu">Change Password</span>
-              </a>
-            </li>
-            <li class="sidebar-item">
-              <a class="sidebar-link" href="./ui-forms.html" aria-expanded="false">
-                <span>
-                  <i class="ti ti-file-description"></i>
-                </span>
-                <span class="hide-menu">Change Email</span>
-              </a>
-            </li>
-            <li class="sidebar-item">
-              <a class="sidebar-link" href="./ui-buttons.html" aria-expanded="false">
-                <span>
-                  <i class="ti ti-article"></i>
-                </span>
-                <span class="hide-menu">Log Out</span>
-              </a>
-            </li>
-            <li class="nav-small-cap">
-              <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
-              <span class="hide-menu"></span>
+              <span class="hide-menu">MENU</span>
             </li>
             <li class="sidebar-item">
               <a class="sidebar-link" href="./authentication-login.html" aria-expanded="false">
@@ -82,7 +45,7 @@
                 <span class="hide-menu">Register</span>
               </a>
             </li>
-            <li class="nav-small-cap">
+            <!-- <li class="nav-small-cap">
               <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
               <span class="hide-menu">EXTRA</span>
             </li>
@@ -101,9 +64,67 @@
                 </span>
                 <span class="hide-menu">Sample Page</span>
               </a>
+            </li> -->
+            <li class="nav-small-cap">
+              <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
+              <span class="hide-menu">ACCOUNT SETTINGS</span>
             </li>
+              <form action="../db/dashboard_handler.php" method="post">
+                <li class="sidebar-item">
+                  <a class="sidebar-link" href="./ui-alerts.html" aria-expanded="false">
+                    <span>
+                      <i class="ti ti-alert-circle"></i>
+                    </span>
+                    
+                    <button name="change_username" style=" background: none; border: none; padding: 0; font: inherit; cursor: pointer; outline: inherit;">
+                    <span class="hide-menu">Change Username</span>
+                    </button>
+                  </a>
+                </li>
+                <li class="sidebar-item">
+                  <a class="sidebar-link" href="./ui-forms.html" aria-expanded="false">
+                    <span>
+                      <i class="ti ti-file-description"></i>
+                    </span>
+                    <button name="change_email" style=" background: none; border: none; padding: 0; font: inherit; cursor: pointer; outline: inherit;">
+                    <span class="hide-menu">Change Email</span>
+                    </button>
+                  </a>
+                </li>
+                <li class="sidebar-item">
+                  <a class="sidebar-link" href="./ui-forms.html" aria-expanded="false">
+                    <span>
+                      <i class="ti ti-file-description"></i>
+                    </span>
+                    <button name="change_phone_number" style=" background: none; border: none; padding: 0; font: inherit; cursor: pointer; outline: inherit;">
+                    <span class="hide-menu">Change Phone Number</span>
+                    </button>
+                  </a>
+                </li>
+                <li class="sidebar-item">
+                  <a class="sidebar-link" href="./ui-card.html" aria-expanded="false">
+                    <span>
+                      <i class="ti ti-cards"></i>
+                    </span>
+                    <button name="change_password" style=" background: none; border: none; padding: 0; font: inherit; cursor: pointer; outline: inherit;">
+                    <span class="hide-menu">Change Password</span>
+                    </button>
+                  </a>
+                </li>
+                <li class="sidebar-item">
+                  <a class="sidebar-link" href="./ui-buttons.html" aria-expanded="false">
+                    <span>
+                      <i class="ti ti-article"></i>
+                    </span>
+                    <button name="logout" style=" background: none; border: none; padding: 0; font: inherit; cursor: pointer; outline: inherit;">
+                    <span class="hide-menu">Log Out</span>
+                    </button>
+                  </a>
+                </li>
+              </form>
+
           </ul>
-          <div class="unlimited-access hide-menu bg-light-primary position-relative mb-7 mt-5 rounded">
+          <!-- <div class="unlimited-access hide-menu bg-light-primary position-relative mb-7 mt-5 rounded">
             <div class="d-flex">
               <div class="unlimited-access-title me-3">
                 <h6 class="fw-semibold fs-4 mb-6 text-dark w-85">Upgrade to pro</h6>
@@ -114,7 +135,7 @@
                 <img src="../assets/images/backgrounds/rocket.png" alt="" class="img-fluid">
               </div>
             </div>
-          </div>
+          </div> -->
         </nav>
         <!-- End Sidebar navigation -->
       </div>
