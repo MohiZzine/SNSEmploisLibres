@@ -1,4 +1,4 @@
-<?php $title = "Register"; ?>
+<?php $title = "Login"; ?>
 <?php include_once('includes/header.php') ?>
 <?php
 if (isset($_GET['error'])) {
