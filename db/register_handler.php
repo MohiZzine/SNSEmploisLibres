@@ -2,8 +2,8 @@
 
 require_once '../utils/register_validation.php';
 
-$username = $full_name = $email = $password = $role = $phone_number = "";
-$username_err = $full_name_err = $email_err = $password_err = $role_err = $phone_number_err = "";
+$username = $full_name = $email = $password =  $confirm_password = $role = $phone_number = "";
+$username_err = $full_name_err = $email_err = $password_err = $confirm_password_err = $role_err = $phone_number_err = "";
 
 if (isset($_POST['register'])) {
   $errors = array();
@@ -50,11 +50,11 @@ if (isset($_POST['register'])) {
   }
 
   // Validate confirm password
-  if (!valid_confirm_password(trim($_POST['confirm_password']), trim($_POST['password']))) {
+  if (!trim($_POST['confirm_password']) == trim($_POST['password'])) {
     $confirm_password_err = "Passwords do not match!";
     $errors['confirm_password'] = 'confirm_password=' . $confirm_password_err;
   } else {
-    $confirm_password = htmlspecialchars(strip_tags(trim($_POST['confirm_password'])));
+    $confirm_password_err = htmlspecialchars(strip_tags(trim($_POST['confirm_password'])));
   }
   
   // Validate phone number
@@ -95,11 +95,11 @@ if (isset($_POST['register'])) {
   $_SESSION['full_name'] = $full_name;
   $_SESSION['user_email'] = $email;
   $_SESSION['user_role'] = $role;
-  if ($_SESSION['role'] == "user") {
+  if ($_SESSION['user_role'] == "user") {
     header('Location: ../views/dashboardUser.php');
     exit();
   }
-  if ($_SESSION['role'] == "artisan") {
+  if ($_SESSION['user_role'] == "artisan") {
     header('location: ../views/dashboardArtisan.php');
     exit();
   }

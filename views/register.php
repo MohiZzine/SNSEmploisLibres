@@ -41,7 +41,7 @@ if (isset($_GET['error'])) {
 
 <body class="h-full font-inter text-white bg-gray-700">
   <header id="nav_bar" class="m-3">
-    <?php include_once('../includes/navbar.php'); ?>
+    <?php include_once('../includes/navbar.php') ?>
   </header>
 
   <section id="register" class="container mx-auto flex flex-col items-center justify-center gap-4">
@@ -67,8 +67,8 @@ if (isset($_GET['error'])) {
         <div class="flex flex-col items-center justify-center">
         <select name="role" id="role" class=" placeholder:italic placeholder-white bg-transparent border-b-2 font-3xl px-6 py-2 border-white text-md focus:outline-none focus:border-b-2">
           <option value="" disabled>Select your role</option>
-          <option value="user" style="color: black">User</option>
-          <option value="artisan" style="color: black">Artisan</option>
+          <option value="user" style="color: black;" selected>User</option>
+          <option value="artisan" style="color: black;">Artisan</option>
         </select>
           <!-- <input type="text" name="role" id="role" placeholder="Role" > -->
           <small class="mt-2 m-3 text-center text-pink-600" style="color: red;">
@@ -96,10 +96,10 @@ if (isset($_GET['error'])) {
           </small>
         </div>
         <div class="flex flex-col items-center justify-center">
-          <input type="password" name="confirm_password" id="confirm_password" placeholder="Password Confirmation" class="placeholder-italic placeholder-white bg-transparent border-b-2 font-3xl px-6 py-2 border-white text-md focus:border-b-2 focus:outline-none <?php echo (isset($password_confirmErr)) ? 'border-rose-500' : null ?>">
+          <input type="password" name="confirm_password" id="confirm_password" placeholder="Password Confirmation" class="placeholder-italic placeholder-white bg-transparent border-b-2 font-3xl px-6 py-2 border-white text-md focus:border-b-2 focus:outline-none <?php echo (isset($_GET['confirm_password'])) ? 'border-rose-500' : null ?>">
           <small class="mt-2 m-3 text-center text-pink-600" style="color: red;">
-          <?php if (isset($confirm_passwordErr)) : ?>
-              <?php echo isset($confirm_passwordErr) ? $confirm_passwordErr : ''; ?>
+          <?php if (isset($_GET['confirm_password'])) : ?>
+              <?php echo isset($_GET['confirm_password']) ? $_GET['confirm_password'] : ''; ?>
               <?php endif; ?>
           </small>
         </div>

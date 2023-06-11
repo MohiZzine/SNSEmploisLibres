@@ -3,21 +3,8 @@
 <?php
 if (isset($_GET['error'])) {
   $error = $_GET['error'];
-  echo "<script>alert('$error')</script>";
 }
 
-if (isset($_GET['username'])) {
-  $username = $_GET['username'];
-  echo "<script>document.getElementById('username').value = '$username'</script>";
-}
-
-if (isset($_GET['email'])) {
-  $email = $_GET['email'];
-}
-
-if (isset($_GET['password'])) {
-  $password = $_GET['password'];
-}
 
 ?>
 
@@ -36,6 +23,11 @@ if (isset($_GET['password'])) {
       <input type="text" name="username_or_email" id="username_or_email" placeholder="Username / Email " class="placeholder:italic placeholder-white bg-transparent border-b-2 font-3xl pr-28 py-2 border-white text-md focus:outline-none focus:border-b-2 transparent-auto-fill">
       <input type="password" name="password" id="password" placeholder="Password" class="placeholder:italic placeholder-white bg-transparent border-b-2 font-3xl pr-28 py-2 border-white text-md focus:outline-none focus:border-b-2">
       <button type="submit" id="login-btn" name="login" class="w-1/2 uppercase rounded-sm bg-green-500 text-white font-bold font-lg p-1.5 px-3 border-transparent hover:bg-green-600 hover:text-gray-200">Login</button>
+      <?php if (isset($error)) : ?>
+        <small class="mt-2 m-3 text-center text-pink-600" style="color: red;">
+          <?php echo isset($error) ? $error : ''; ?>
+        </small>
+        <?php endif; ?>
       <div id="recovery" class="flex items-center justify-between gap-4 text-center">
         <p class="text-sm mx-6"><a href="views/register.php" class="hover:cursor-pointer hover:text-gray-500">Sign Up</a></p>
         <p class="text-sm mx-6"><a href="views/forgot_password.php" class="hover:cursor-pointer hover:text-gray-500">Forgot Password</a></p>

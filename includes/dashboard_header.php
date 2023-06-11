@@ -1,5 +1,6 @@
 <!-- Sidebar Start -->
 <aside class="left-sidebar">
+  <form action="../db/user_dashboard_handler.php" method="post"></form>
       <!-- Sidebar scroll-->
       <div>
         <div class="brand-logo d-flex align-items-center justify-content-between">
@@ -27,22 +28,14 @@
             </li>
             <li class="nav-small-cap">
               <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
-              <span class="hide-menu">UI COMPONENTS</span>
-            </li>
-            <li class="sidebar-item">
-              <a class="sidebar-link" href="./ui-buttons.html" aria-expanded="false">
-                <span>
-                  <i class="ti ti-article"></i>
-                </span>
-                <span class="hide-menu">Buttons</span>
-              </a>
+              <span class="hide-menu">ACCOUNT SETTINGS</span>
             </li>
             <li class="sidebar-item">
               <a class="sidebar-link" href="./ui-alerts.html" aria-expanded="false">
                 <span>
                   <i class="ti ti-alert-circle"></i>
                 </span>
-                <span class="hide-menu">Alerts</span>
+                <span class="hide-menu">Change Username</span>
               </a>
             </li>
             <li class="sidebar-item">
@@ -50,7 +43,7 @@
                 <span>
                   <i class="ti ti-cards"></i>
                 </span>
-                <span class="hide-menu">Card</span>
+                <span class="hide-menu">Change Password</span>
               </a>
             </li>
             <li class="sidebar-item">
@@ -58,7 +51,15 @@
                 <span>
                   <i class="ti ti-file-description"></i>
                 </span>
-                <span class="hide-menu">Forms</span>
+                <span class="hide-menu">Change Email</span>
+              </a>
+            </li>
+            <li class="sidebar-item">
+              <a class="sidebar-link" href="./ui-buttons.html" aria-expanded="false">
+                <span>
+                  <i class="ti ti-article"></i>
+                </span>
+                <span class="hide-menu">Log Out</span>
               </a>
             </li>
             <li class="sidebar-item">
@@ -139,12 +140,12 @@
                 <i class="ti ti-menu-2"></i>
               </a>
             </li>
-            <li class="nav-item">
+            <!-- <li class="nav-item">
               <a class="nav-link nav-icon-hover" href="javascript:void(0)">
                 <i class="ti ti-bell-ringing"></i>
                 <div class="notification bg-primary rounded-circle"></div>
               </a>
-            </li>
+            </li> -->
           </ul>
           <div id="navbarNav" class="navbar-collapse justify-content-end px-0 bg-slate-800">
             <ul class="navbar-nav flex-row ms-auto align-items-center justify-content-end">

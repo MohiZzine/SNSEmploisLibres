@@ -32,7 +32,8 @@ require_once("../utils/database.php");
         $service = $ConnectingDB->query("SELECT * FROM services");
         while ($s = $service->fetch(PDO::FETCH_ASSOC)) {
           ?>
-          <div class="card">
+          
+          <div class="card m-3 mx-2">
 
             <form method="post" action="services.php">
               <input type="hidden" name="service_id" value="<?php echo $s["service_id"]; ?>">

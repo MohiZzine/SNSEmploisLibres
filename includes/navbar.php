@@ -2,7 +2,7 @@
   <div class="flex space-x-12">
     <a href="contact.php" class="hover:cursor-pointer hover:text-gray-300">Contact</a>
   </div>
-  <img id="logo" src="assets/global.png" alt="logo">
+  <img id="logo" src="<?php echo ($title == "Register") ? '../assets/global.png': 'assets/global.png'?>" alt="logo">
   <div class="flex space-x-12">
     <a href="about.php" class="hover:cursor-pointer hover:text-gray-300">About</a>
   </div>

@@ -37,28 +37,22 @@ if (isset($_POST['login'])) {
   $user = new User($db->pdo);
   $login = $user->login($username_or_email, $password);
   if (!$login['login']) {
-    if ($login['message'] == "Username or Email is incorrect!") {
-      $error = $login['message'];
-      header('Location: ../index.php?error=' . $error);
-      exit();
-    } else if ($login['message'] == "Password is incorrect!") {
-      $error = $login['message'];
-      header('Location: ../index.php?error=' . $error);
-      exit();
-    }
+    header('Location: ../index.php?error=' . $error);
+    exit();
   }
 
 
   session_start();
+  var_dump($login);
   $_SESSION['user_id'] = $login['user_id'];
   $_SESSION['username'] = $user->get_username();
   $_SESSION['full_name'] = $user->get_full_name();
-  $_SESSION['role'] = $user->get_role();
-  if ($_SESSION['role'] == "user") {
+  $_SESSION['user_role'] = $user->get_role();
+  if ($_SESSION['user_role'] == "user") {
     header('Location: ../views/dashboardUser.php');
     exit();
   }
-  if ($_SESSION['role'] == "artisan") {
+  if ($_SESSION['user_role'] == "artisan") {
     header('location: ../views/dashboardArtisan.php');
     exit();
   }
