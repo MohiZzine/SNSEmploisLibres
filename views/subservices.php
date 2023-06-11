@@ -37,6 +37,20 @@ require_once("../utils/database.php");
           xhttp.open("GET", "getSuggestions.php?price=" + price + "&service_id=" + encodeURIComponent(serviceId) + "&subservice_id=" + encodeURIComponent(subserviceId) + "&location=" + encodeURIComponent(location), true);
           xhttp.send()
       }
+      function showHint1(){
+        var rating = document.getElementsByName("rating")[0].value;
+        var serviceId = document.getElementsByName("service_id")[0].value;
+        var subserviceId = document.getElementsByName("subservice_id")[0].value;
+        var location = document.getElementsByName("location")[0].value;
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                document.getElementById("card").innerHTML = this.responseText;
+            }
+        };
+        xhttp.open("GET", "getSuggestions1.php?rating=" + rating + "&service_id=" + encodeURIComponent(serviceId) + "&subservice_id=" + encodeURIComponent(subserviceId) + "&location=" + encodeURIComponent(location), true);
+        xhttp.send()
+      }
       
 
 
@@ -67,7 +81,7 @@ require_once("../utils/database.php");
                     $stmt->execute();
                     if ($stmt->rowCount() != 0) {
                         echo '<h3><b>Enter a price:</b> </h3>';
-                        echo '<p> Suggestions: <span id="txtHint"></span></p>';
+                        echo '<p> Suggestions: <span id="txtHint"></span></p>';          
                         $serviceId = $_POST['service_id'];
                         $subserviceId = $_POST['subservice_id'];
                         $location = $_POST['location'];?>
@@ -83,7 +97,24 @@ require_once("../utils/database.php");
                         
 
 
-                        <?php while ($a = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                        <?php
+                                      echo "<br>";
+                                      echo '<h3><b>Select a rating:</b> </h3>';
+                                      echo '<form method="GET" action="">';
+                                      echo 'select rating: <select name="rating" onchange="showHint1()">';
+                                      echo '<option disabled selected>Select a rating</option>';
+                                      echo '<option value="1">1</option>';
+                                      echo '<option value="2">2</option>';
+                                      echo '<option value="3">3</option>';
+                                      echo '<option value="4">4</option>';
+                                      echo '<option value="5">5</option>';
+                                      echo '</select>';
+                                      echo '<input type="hidden" name="service_id" value="' . $service . '">';
+                                      echo '<p> Suggestions: <span id="txtHint1"></span></p>';          
+
+
+                        
+                        while ($a = $stmt->fetch(PDO::FETCH_ASSOC)) {
                             ?>
 
                             <div class="card" id ="card">
