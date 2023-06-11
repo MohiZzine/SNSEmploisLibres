@@ -118,11 +118,13 @@ CREATE TABLE IF NOT EXISTS Messages (
 CREATE TABLE IF NOT EXISTS Notifications (
   notification_id INT AUTO_INCREMENT,
   user_id INT,
+  request_id INT,
   message TEXT NOT NULL,
   date_sent DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
   is_read BOOLEAN DEFAULT FALSE,
   PRIMARY KEY (notification_id),
-  FOREIGN KEY (user_id) REFERENCES Users(user_id)
+  FOREIGN KEY (user_id) REFERENCES Users(user_id),
+  FOREIGN KEY (request_id) REFERENCES Requests(request_id)
 );
 
 CREATE TABLE IF NOT EXISTS Reviews (

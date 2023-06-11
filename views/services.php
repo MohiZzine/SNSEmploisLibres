@@ -39,21 +39,24 @@ require_once("../utils/database.php");
                     ?>
 
                     <div class="card">
-                        <button id="subservice" name="subservice" class="btn">
+
+                        <button name="subservice" class="btn subservice">
                             <?php echo "<h4>" . $s['subservice_name'] . '</h4></br>' . $s['subservice_description']; ?>
                         </button>
 
                         <!-- The Modal -->
-                        <div id="myModal" class="modal">
+                        <div class="modal">
                             <div class="modal-content">
                                 <span class="close"
-                                    style="color:white; position:absolute; right: 11px; top:0;">&times;</span>
+                                    style="color:black; position:absolute; right: 11px; top:0;">&times;</span>
 
                                 <form method="post" action="subservices.php">
                                     <input type="hidden" name="service_id" value="<?php echo $s["service_id"]; ?>">
                                     <input type="hidden" name="subservice_id" value="<?php echo $s["subservice_id"]; ?>">
-                                    <input type="hidden" name="subservice_name" value="<?php echo $s["subservice_name"]; ?>">
-                                    <input type="hidden" name="subservice_description" value="<?php echo $s["subservice_description"]; ?>">
+                                    <input type="hidden" name="subservice_name"
+                                        value="<?php echo $s["subservice_name"]; ?>">
+                                    <input type="hidden" name="subservice_description"
+                                        value="<?php echo $s["subservice_description"]; ?>">
                                     <label>Enter your city</label><br>
                                     <input type="text" id="location" name="location" placeholder="City" required><br>
                                     <input type="submit" name="submit" class="btn"></input>
@@ -73,20 +76,42 @@ require_once("../utils/database.php");
     </div>
     </div>
     <script>
-        var modal = document.getElementById("myModal");
-        var btn = document.getElementById("subservice");
-        var span = document.getElementsByClassName("close")[0];
-        btn.onclick = function () {
-            modal.style.display = "block";
+        const modals = document.querySelectorAll(".modal");
+        const subservices_buttons = document.querySelectorAll(".subservice");
+        for (let i = 0; i < subservices_buttons.length; i++) {
+            subservices_buttons[i].onclick = function () {
+                modals[i].style.display = "block";
+            }
         }
-        span.onclick = function () {
-            modal.style.display = "none";
+        const spans = document.querySelectorAll(".close");
+        for (let i = 0; i < spans.length; i++) {
+            spans[i].onclick = function () {
+                modals[i].style.display = "none";
+            }
         }
+        console.log(subservices_buttons[0])
+        console.log(modals[0]);
+        console.log(spans[0]);
         window.onclick = function (event) {
             if (event.target == modal) {
                 modal.style.display = "none";
             }
         }
+
+        // var modal = document.getElementById("myModal");
+        // var btn = document.getElementById("subservice");
+        // var span = document.getElementsByClassName("close")[0];
+        // btn.onclick = function () {
+        //     modal.style.display = "block";
+        // }
+        // span.onclick = function () {
+        //     modal.style.display = "none";
+        // }
+        // window.onclick = function (event) {
+        //     if (event.target == modal) {
+        //         modal.style.display = "none";
+        //     }
+        // }
     </script>
     <script src="assets/libs/jquery/dist/jquery.min.js"></script>
     <script src="assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>

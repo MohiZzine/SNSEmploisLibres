@@ -1,10 +1,9 @@
 <?php
 session_start();
-// if (!isset($_SESSION['user_id'])) {
-//     header('location: ../index.php');
-//     exit();
-// }
-$_SESSION['user_id'] = 1;
+if (!isset($_SESSION['user_id'])) {
+    header('location: ../index.php');
+    exit();
+}
 require_once("../utils/database.php");
 
 $ConnectingDB = $GLOBALS['pdo'];
@@ -21,7 +20,7 @@ if (isset($_POST['accept_request'])) {
     $stmt->execute();
 
     // Send a notification to the user
-    $notification = "INSERT INTO notifications(user_id, message) VALUES ('$user_id','Your request has been accepted')";
+    $notification = "INSERT INTO notifications(user_id, request_id, message) VALUES ('$user_id', '$request_id', 'Your request has been accepted')";
     $stmt2 = $ConnectingDB->prepare($notification);
     $stmt2->execute();
 
@@ -43,7 +42,7 @@ if (isset($_POST['decline_request'])) {
     $stmt->execute();
 
     // Send a notification to the user
-    $notification = "INSERT INTO notifications(user_id, message) VALUES ('$user_id','Your request has been declined')";
+    $notification = "INSERT INTO notifications(user_id, request_id, message) VALUES ('$user_id','$request_id', 'Your request has been declined')";
     $stmt2 = $ConnectingDB->prepare($notification);
     $stmt2->execute();
 
