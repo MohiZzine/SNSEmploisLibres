@@ -142,18 +142,12 @@ CREATE TABLE IF NOT EXISTS Reviews (
 -- LeoMohi1987
 -- RonaldoSui1985
 
-INSERT INTO Users (user_id, username, full_name, email, password, phone_number, role) VALUES (1, 'mohizine', 'Mohieddine Farid', 'farid.mohieddine@gmail.com', '$2y$10$ANvC.QckSes9a0vH62h33evuASZaDIXBPLV/A6ZurCT.2jcX6rtmi
-', '0712345678', 'artisan'),
-(2, 'MohiZwine', 'Leonel Messi', 'leomessi@gmail.com', '$2y$10$63iJ6y.F1WwHMcVUHQ/l/eia65Q0yQZYCd3tSlrvVgqMKBDHry4aO
-','0712345679', 'artisan'),
-(3, 'Cristiano', 'Cristiano Ronaldo','Cristiano@gmail.com', '$2y$10$p4geEi6CFgXBkwHVhQl/Ke9BpNA67P7Cibl53nPvRATnJrYsUogZG
-', '0712345677', 'artisan'),
-(4, 'Imane', 'Imane Rahali', 'imane@gmail.com', '$2y$10$63iJ6y.F1WwHMcVUHQ/l/ea65Q0yQZYCd3tSlrvVgqMKBDHry4aO
-','0712345676', 'artisan'),
-(5, 'Ayman', 'Ayman Messi', 'ayman@gmail.com', '$2y$10$63iJ6y.F1WwHMcVUHQ/l/ei65Q0yQZYCd3tSlrvVgqMKBDHry4aO
-','07123456785', 'artisan'),
-(6, 'user', 'User User', 'user@gmail.com', '$2y$10$63iJ6y.F1WwHMcVUHQ/l/ei65Q0yQZYCd3tSlrvVgqMKBDHry4aO
-','0712345674', 'user');
+INSERT INTO Users (user_id, username, full_name, email, password, phone_number, role) VALUES (1, 'mohizine', 'Mohieddine Farid', 'farid.mohieddine@gmail.com', '$2y$10$ANvC.QckSes9a0vH62h33evuASZaDIXBPLV/A6ZurCT.2jcX6rtmi', '0712345678', 'artisan'),
+(2, 'MohiZwine', 'Leonel Messi', 'leomessi@gmail.com', '$2y$10$63iJ6y.F1WwHMcVUHQ/l/eia65Q0yQZYCd3tSlrvVgqMKBDHry4aO','0712345679', 'artisan'),
+(3, 'Cristiano', 'Cristiano Ronaldo','Cristiano@gmail.com', '$2y$10$p4geEi6CFgXBkwHVhQl/Ke9BpNA67P7Cibl53nPvRATnJrYsUogZG', '0712345677', 'artisan'),
+(4, 'Imane', 'Imane Rahali', 'imane@gmail.com', '$2y$10$63iJ6y.F1WwHMcVUHQ/l/ea65Q0yQZYCd3tSlrvVgqMKBDHry4aO','0712345676', 'artisan'),
+(5, 'Ayman', 'Ayman Messi', 'ayman@gmail.com', '$2y$10$63iJ6y.F1WwHMcVUHQ/l/ei65Q0yQZYCd3tSlrvVgqMKBDHry4aO','07123456785', 'artisan'),
+(6, 'user', 'User User', 'user@gmail.com', '$2y$10$63iJ6y.F1WwHMcVUHQ/l/ei65Q0yQZYCd3tSlrvVgqMKBDHry4aO','0712345674', 'user');
 
 INSERT INTO artisans (user_id, company_name, company_address, description, profile_picture,certifications,location) VALUES
 (1, 'Bob Plumbing', '123 Plumber St, New York', 'Expert plumbing services.', 'https://img.freepik.com/free-photo/wide-angle-shot-single-tree-growing-clouded-sky-during-sunset-surrounded-by-grass_181624-22807.jpg?w=900&t=st=1686412681~exp=1686413281~hmac=6689aebfa8a06f0a67001392aac6c9b305300536f9bce311badce730320c1434','certificat1','rabat'),

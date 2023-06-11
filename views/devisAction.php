@@ -7,7 +7,7 @@ session_start();
 $_SESSION['user_id'] = 1;
 require_once("../utils/database.php");
 
-$ConnectingDB = $GLOBALS['connexion'];
+$ConnectingDB = $GLOBALS['pdo'];
 
 // If the request is accepted
 if (isset($_POST['accept_request'])) {
@@ -49,7 +49,7 @@ if (isset($_POST['decline_request'])) {
 
 
     if ($stmt && $stmt2) {
-        echo "<script>alert('Request Accepted!')</script>";
+        echo "<script>alert('Request declined!')</script>";
     }
 }
 ?>
