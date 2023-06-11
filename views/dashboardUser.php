@@ -16,7 +16,6 @@ require_once("../utils/database.php");
     integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"> -->
   <link rel="stylesheet" href="../styles/dashboard.css" />
   <link rel="stylesheet" href="../styles/cards.css" />
-  <link rel="stylesheet" href="../styles/modal.css" />
 </head>
 
 <body>
@@ -34,24 +33,13 @@ require_once("../utils/database.php");
         while ($s = $service->fetch(PDO::FETCH_ASSOC)) {
           ?>
           <div class="card">
-            <button id="service" name="service" class="btn">
-              <?php echo "<h4>" . $s['service_name'] . '</h4></br>' . $s['service_description']; ?>
-            </button>
 
-            <!-- The Modal -->
-            <div id="myModal" class="modal">
-              <div class="modal-content">
-                <span class="close" style="color:white; position:absolute; right: 11px; top:0;">&times;</span>
-
-                <form method="post" action="../views/services.php">
-                  <input type="hidden" name="service_id" value="<?php echo $s["service_id"]; ?>">
-                  <label>Enter your city</label><br>
-                  <input type="text" id="location" name="location" placeholder="City" required><br>
-                  <input type="submit" name="submit" class="btn"></input>
-                </form>
-
-              </div>
-            </div>
+            <form method="post" action="services.php">
+              <input type="hidden" name="service_id" value="<?php echo $s["service_id"]; ?>">
+              <button type="submit" id="service" name="service" class="btn">
+                <?php echo "<h4>" . $s['service_name'] . '</h4></br>' . $s['service_description']; ?>
+              </button>
+            </form>
 
           </div>
         <?php } ?>
@@ -61,22 +49,6 @@ require_once("../utils/database.php");
   </div>
   </div>
   </div>
-  <script>
-    var modal = document.getElementById("myModal");
-    var btn = document.getElementById("service");
-    var span = document.getElementsByClassName("close")[0];
-    btn.onclick = function () {
-      modal.style.display = "block";
-    }
-    span.onclick = function () {
-      modal.style.display = "none";
-    }
-    window.onclick = function (event) {
-      if (event.target == modal) {
-        modal.style.display = "none";
-      }
-    }
-  </script>
   <script src="../assets/libs/jquery/dist/jquery.min.js"></script>
   <script src="../assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
   <script src="../assets/js/sidebarmenu.js"></script>

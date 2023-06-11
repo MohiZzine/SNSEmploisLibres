@@ -1,6 +1,5 @@
 <?php
 
-
 include_once '../utils/login_validation.php';
 include_once '../classes/database.class.php';
 include_once '../classes/user.class.php';
@@ -51,7 +50,6 @@ if (isset($_POST['login'])) {
 
 
   session_start();
-  // var_dump($login);
   $_SESSION['user_id'] = $login['user_id'];
   $_SESSION['username'] = $user->get_username();
   $_SESSION['full_name'] = $user->get_full_name();

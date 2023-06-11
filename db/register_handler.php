@@ -95,8 +95,14 @@ if (isset($_POST['register'])) {
   $_SESSION['full_name'] = $full_name;
   $_SESSION['user_email'] = $email;
   $_SESSION['user_role'] = $role;
-  header('Location: ../index.php');
-  exit();
+  if ($_SESSION['role'] == "user") {
+    header('Location: ../views/dashboardUser.php');
+    exit();
+  }
+  if ($_SESSION['role'] == "artisan") {
+    header('location: ../views/dashboardArtisan.php');
+    exit();
+  }
 }  
 
 

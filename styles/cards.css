@@ -4,17 +4,18 @@
   justify-content: center;
 }
 
+.card img {
+  width: 100%;
+  height: auto;
+  border-radius: 5px;
+}
+
 .artisan-table {
   width: 100%;
   border-collapse: collapse;
   margin-bottom: 20px;
 }
 
-.card img {
-  width: 100%;
-  height: auto;
-  border-radius: 5px;
-}
 
 .artisan-table td,
 .artisan-table th {
@@ -24,4 +25,41 @@
 
 .review {
   margin-bottom: 10px;
+}
+
+.vertical-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.vertical-content {
+  flex: 1;
+}
+.btn {
+  background-color: #c24d2c;
+  color: white;
+  margin-bottom: 5px;
+}
+.reject_btn {
+  width: 50px;
+  background-color: rgb(198, 0, 0);
+  border: none;
+  cursor: pointer;
+  display: inline;
+  border-radius: 5px;
+}
+.accept_btn {
+  width: 50px;
+  background-color: rgb(6, 122, 6);
+  border: none;
+  cursor: pointer;
+  display: inline;
+  border-radius: 5px;
+} 
+.reject_btn:hover {
+  background-color: rgb(241, 142, 142);
+}
+.accept_btn:hover {
+  background-color: rgb(112, 184, 112);
 }

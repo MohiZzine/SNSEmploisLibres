@@ -1,6 +1,5 @@
 <?php
 session_start();
-// var_dump($_SESSION);
 require_once("../utils/database.php");
 ?>
 
@@ -16,6 +15,7 @@ require_once("../utils/database.php");
     integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"> -->
     <link rel="stylesheet" href="../styles/dashboard.css" />
     <link rel="stylesheet" href="../styles/cards.css" />
+    <link rel="stylesheet" href="../styles/modal.css" />
 </head>
 
 <body>
@@ -29,49 +29,41 @@ require_once("../utils/database.php");
             <div class="card-container">
 
                 <?php
-                if (isset($_POST['submit'])) {
-                    $ConnectingDB = $GLOBALS['pdo'];
-                    $service = $_POST["service_id"];
-                    $location = $_POST["location"];
-                    $q = "SELECT * 
-                            FROM Users U Natural JOIN (SELECT *
-                                                        FROM artisan_services NATURAL JOIN Artisans 
-                                                        WHERE service_id='$service' AND location='$location') P";
-                    $stmt = $ConnectingDB->prepare($q);
-                    $stmt->execute();
-                    if ($stmt->rowCount() != 0) {
-                        while ($a = $stmt->fetch(PDO::FETCH_ASSOC)) {
-                            ?>
+                $ConnectingDB = $GLOBALS['pdo'];
+                $service = $_POST["service_id"];
+                $q = "SELECT * 
+                      FROM subservices WHERE service_id = '$service'";
+                $stmt = $ConnectingDB->prepare($q);
+                $stmt->execute();
+                while ($s = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                    ?>
 
-                            <div class="card">
+                    <div class="card">
+                        <button id="subservice" name="subservice" class="btn">
+                            <?php echo "<h4>" . $s['subservice_name'] . '</h4></br>' . $s['subservice_description']; ?>
+                        </button>
 
-                                <?php
-                                if ($a["profile_picture"]) {
-                                    echo '<img src="' . $a['profile_picture'] . '" alt="artisan">';
-                                } else {
-                                    echo '<img src="../assets/user.jpg" alt="artisan">';
-                                } ?>
+                        <!-- The Modal -->
+                        <div id="myModal" class="modal">
+                            <div class="modal-content">
+                                <span class="close"
+                                    style="color:white; position:absolute; right: 11px; top:0;">&times;</span>
 
-                                <h3>
-                                    <?php echo $a["full_name"]; ?>
-                                </h3>
-                                <h3><b>Company:</b>
-                                    <?php echo $a["company_name"]; ?>
-                                </h3>
-                                <form method="post" action="profile.php">
-                                    <input type="hidden" name="artisan_id" value="<?php echo $a["artisan_id"]; ?>">
-                                    <input type="hidden" name="service_id" value="<?php echo $_POST["service_id"]; ?>">
-                                    <button type="submit" id="artisan" name="artisan" class="btn">View Profile
-                                    </button>
+                                <form method="post" action="subservices.php">
+                                    <input type="hidden" name="service_id" value="<?php echo $s["service_id"]; ?>">
+                                    <input type="hidden" name="subservice_id" value="<?php echo $s["subservice_id"]; ?>">
+                                    <input type="hidden" name="subservice_name" value="<?php echo $s["subservice_name"]; ?>">
+                                    <input type="hidden" name="subservice_description" value="<?php echo $s["subservice_description"]; ?>">
+                                    <label>Enter your city</label><br>
+                                    <input type="text" id="location" name="location" placeholder="City" required><br>
+                                    <input type="submit" name="submit" class="btn"></input>
                                 </form>
+
                             </div>
+                        </div>
 
-
-                        <?php }
-                    } else {
-                        echo "<p>There are no craftsmen of this service in your area.</p>";
-                    }
-                } ?>
+                    </div>
+                <?php } ?>
             </div>
 
 
@@ -80,6 +72,22 @@ require_once("../utils/database.php");
     </div>
     </div>
     </div>
+    <script>
+        var modal = document.getElementById("myModal");
+        var btn = document.getElementById("subservice");
+        var span = document.getElementsByClassName("close")[0];
+        btn.onclick = function () {
+            modal.style.display = "block";
+        }
+        span.onclick = function () {
+            modal.style.display = "none";
+        }
+        window.onclick = function (event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+    </script>
     <script src="assets/libs/jquery/dist/jquery.min.js"></script>
     <script src="assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="assets/js/sidebarmenu.js"></script>
