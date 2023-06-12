@@ -20,7 +20,7 @@ require_once("../utils/database.php");
   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
   <script
     src="//cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.full.min.js"></script>
-  <title>SNS Emplois Libres</title>
+  <title>Devis</title>
   <link rel="stylesheet" href="../styles/dashboard.css" />
   <link rel="stylesheet" href="../styles/cards.css" />
   <link rel="stylesheet" href="../styles/modalDevis.css" />
