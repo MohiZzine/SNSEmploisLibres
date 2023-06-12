@@ -20,10 +20,7 @@ require_once "../utils/database.php";
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>SNS Emplois Libres</title>
-  <!-- <link rel="stylesheet" href="styles/main.css"> -->
-  <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
-    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"> -->
+  <title>Reviews</title>
   <link rel="stylesheet" href="../styles/dashboard.css" />
   <link rel="stylesheet" href="../styles/cards.css" />
   <link rel="stylesheet" href="../styles/notifications.css" />
@@ -40,23 +37,21 @@ require_once "../utils/database.php";
       <div class="card-container" style="display: grid; grid-template-columns: 1fr 1fr;">
         <?php
         $ConnectingDB = $GLOBALS['pdo'];
-        // $reviews = $ConnectingDB->query("SELECT *
-        // FROM SELECT * FROM requests R JOIN artisans A ON R artisan_id = A.artisan_id WHERE R.user_id = {$_SESSION['user_id']}
-        // ");
-        $reviews = $ConnectingDB->query("SELECT * FROM artisans A JOIN requests R ON A.artisan_id = R.artisan_id WHERE R.user_id = '$_SESSION[user_id]'");
+        $reviews = $ConnectingDB->query("SELECT * 
+        FROM artisans 
+        WHERE artisan_id IN (SELECT DISTINCT artisan_id
+                             FROM requests
+                             WHERE user_id = '$_SESSION[user_id]')");
         while ($artisan = $reviews->fetch(PDO::FETCH_ASSOC)) {
-          $artisans_reviews = $connectingDB->query("SELECT * FROM users WHERE user_id = '$artisan[user_id]'");
+          $artisans_reviews = $ConnectingDB->query("SELECT * FROM users WHERE user_id = '$artisan[user_id]'");
           $r = $artisans_reviews->fetch(PDO::FETCH_ASSOC);
-          
-          echo var_dump($r);
-
           ?>
           <div class="card m-3 mx-2" style="">
 
             <form method="post" action="services.php" style="width: 100%;">
-              <input type="hidden" name="service_id" value="<?php echo $artisan["artisan_id"]; ?>">
-              <button type="submit" id="service" name="service" class="btn" style="width: 100%; height: 200px;">
-                <?php echo "<h1>" . $r['full_name'] . "</h1></br>" . "<p style='color: black'>" .$artisan['company_name'] . '</p>'; ?>
+              <input type="hidden" name="artisan_id" value="<?php echo $artisan["artisan_id"]; ?>">
+              <button type="submit" id="review" name="review" class="btn" style="width: 100%; height: 200px;">
+                <?php echo "<h1>" . $r['full_name'] . "</h1></br>" . "<p style='color: black'>" . $artisan['company_name'] . '</p>'; ?>
               </button>
             </form>
 
@@ -65,11 +60,5 @@ require_once "../utils/database.php";
       </div>
     </div>
   </div>
- 
-  <script src="../assets/libs/jquery/dist/jquery.min.js"></script>
-  <script src="../assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-  <script src="../assets/js/sidebarmenu.js"></script>
-  <script src="../assets/js/app.min.js"></script>
-  <script src="../assets/libs/simplebar/dist/simplebar.js"></script>
 
   <?php include '../includes/footer.php'; ?>
