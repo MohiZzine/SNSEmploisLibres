@@ -67,7 +67,7 @@ CREATE TABLE IF NOT EXISTS requests (
   subservice_id INT,
   artisan_id INT,
   date_requested TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  reservation_date datetime,
+  reservation_date TIMESTAMP NOT NULL,
   status VARCHAR(10) NOT NULL DEFAULT 'pending',
   PRIMARY KEY (request_id),
   FOREIGN KEY (user_id) REFERENCES users(user_id),
@@ -212,19 +212,19 @@ INSERT INTO availabilities (artisan_id, days, start_time, end_time) VALUES
 (1, 'Tuesdays', '11:00:00', '18:00:00'),
 (1, 'Fridays', '09:00:00', '17:00:00'),
 (2, 'Tuesdays', '10:00:00', '18:00:00'),
-(2, 'Sundays', '10:00:00', '18:00:00'),
+(2, 'Saturdays', '10:00:00', '18:00:00'),
 (3, 'Wednesdays', '08:00:00', '16:00:00'),
 (4, 'Thursdays', '11:00:00', '19:00:00'),
 (5, 'Fridays', '09:00:00', '17:00:00');
 
 -- Populating the requests table
 INSERT INTO requests (user_id, subservice_id, artisan_id, reservation_date) VALUES
-(6, 1, 1, STR_TO_DATE('2023-06-13 16:00:00', '%m/%d/%Y %H:%i:%s')),
-(6, 2, 1, STR_TO_DATE('2023-06-13 16:00:00', '%m/%d/%Y %H:%i:%s')),
-(7, 10, 4, STR_TO_DATE('2023-06-13 16:00:00', '%m/%d/%Y %H:%i:%s')),
-(10, 9, 3, STR_TO_DATE('2023-06-13 16:00:00', '%m/%d/%Y %H:%i:%s')),
-(8, 5, 2, STR_TO_DATE('2023-06-13 16:00:00', '%m/%d/%Y %H:%i:%s')),
-(9, 3, 1, STR_TO_DATE('2023-06-13 16:00:00', '%m/%d/%Y %H:%i:%s'));
+(6, 1, 1, '2023-06-13 16:00:00'),
+(6, 2, 1, '2023-06-13 16:00:00'),
+(7, 10, 4, '2023-06-13 16:00:00'),
+(10, 9, 3, '2023-06-13 16:00:00'),
+(8, 5, 2, '2023-06-13 16:00:00'),
+(9, 3, 1, '2023-06-13 16:00:00');
 
 -- Populating the quotes table
 INSERT INTO quotes (artisan_id, request_id, quote_amount, quote_description) VALUES

@@ -15,6 +15,7 @@ require_once("../utils/database.php");
     integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"> -->
   <link rel="stylesheet" href="../styles/dashboard.css" />
   <link rel="stylesheet" href="../styles/cards.css" />
+  <link rel="stylesheet" href="../styles/profile.css" />
 </head>
 
 <body>
@@ -35,43 +36,114 @@ require_once("../utils/database.php");
         //$artisan = $ConnectingDB->query("SELECT * FROM artisans where artisan_id = '$artisanId'");
         $artisan = $ConnectingDB->query("SELECT * FROM artisans JOIN users ON artisans.user_id = users.user_id  WHERE artisan_id =" . $artisanId);
         $a = $artisan->fetch(PDO::FETCH_ASSOC);
-        echo '<table class="artisan-table">';
-        echo '<tr><th colspan="2">Artisan Information</th></tr>';
-        echo '<tr><td>Full name:</td><td>' . $a['full_name'] . '</td></tr>';
-        if ($a["profile_picture"]) {
-          echo '<tr><td>Profile picture:</td><td>' .
-            '<img src="' . $a['profile_picture'] . '" alt="artisan">' . '</td></tr>';
-        } else {
-          echo '<tr><td>Profile picture:</td><td>' . '<img src="../assets/user.jpg" alt="artisan">' . '</td></tr>';
-        }
-        echo '<tr><td>Email:</td><td>' . $a['email'] . '</td></tr>';
-        echo '<tr><td>Phone number:</td><td>' . $a['phone_number'] . '</td></tr>';
-        echo '<tr><td>Company name:</td><td>' . $a['company_name'] . '</td></tr>';
-        echo '<tr><td>Company address:</td><td>' . $a['company_address'] . '</td></tr>';
-        echo '<tr><td>Description:</td><td>' . $a['description'] . '</td></tr>';
-        echo '<tr><td>Certifications:</td><td>' . $a['certifications'] . '</td></tr>';
-        echo '<tr><td>Location:</td><td>' . $a['location'] . '</td></tr>';
+        echo '<div class="cv-container">';
+        echo '<div class="cv-heading">';
+        echo '<h1>Artisan profile</h1>';
+        echo '</div>';
 
-        $reviews = $ConnectingDB->query("SELECT * FROM reviews WHERE artisan_id = 1");
-        if ($reviews->rowCount() > 0) {
-          echo '<tr><th colspan="2">Reviews</th></tr>';
-          while ($r = $reviews->fetch(PDO::FETCH_ASSOC)) {
-            echo '<tr class="review"><td colspan="2">' . $r['review_text'] . '</td></tr>';
-          }
+        echo '<div class="cv-picture">';
+        if ($a["profile_picture"]) {
+          echo '<img src="' . $a['profile_picture'] . '" alt="artisan" style="
+            width: 210px;
+            height: 200px;">';
+        } else {
+          echo '<img src="../assets/user.jpg" alt="artisan">';
         }
-        echo '</table>';
+
+        echo '</div>';
+
+        echo '<div class="cv-section">';
+        echo '<div class="cv-section-heading">Personal Information</div>';
+        echo '<div class="cv-section-content">';
+        echo '<div class="cv-item">';
+        echo '<span class="cv-label">Full Name:</span>';
+        echo "<span class='cv-value'>";
+        echo $a['full_name'];
+        echo "</span>";
+        echo '</div>';
+        echo '<div class="cv-item">';
+        echo '<span class="cv-label">Email:</span>';
+        echo '<span class="cv-value">';
+        echo $a['email'];
+        echo '</span>';
+        echo '</div>';
+        echo '<div class="cv-item">';
+        echo '<span class="cv-label">Phone Number:</span>';
+        echo '<span class="cv-value">';
+        echo $a['phone_number'];
+        echo '</span>';
+        echo '</div>';
+        echo '<div class="cv-item">';
+        echo '<span class="cv-label">Location:</span>';
+        echo '<span class="cv-value">';
+        echo $a['location'];
+        echo '</span>';
+        echo '</div>';
+        echo '</div>';
+        echo '</div>';
+
+        echo '<div class="cv-section">';
+        echo '<div class="cv-section-heading">Professional Experience</div>';
+        echo '<div class="cv-section-content">';
+        echo '<div class="cv-item">';
+        echo '<span class="cv-label">Company Name:</span>';
+        echo '<span class="cv-value">';
+        echo $a['company_name'];
+        echo '</span>';
+        echo '</div>';
+        echo '<div class="cv-item">';
+        echo '<span class="cv-label">Company Address:</span>';
+        echo '<span class="cv-value">';
+        echo $a['company_address'];
+        echo '</span>';
+        echo '</div>';
+        echo '<div class="cv-item">';
+        echo '<span class="cv-label">Description:</span>';
+        echo '<span class="cv-value">';
+        echo $a['description'];
+        echo '</span>';
+        echo '</div>';
+        echo '</div>';
+        echo '</div>';
+
+        echo '<div class="cv-section">';
+        echo '<div class="cv-section-heading">Certifications</div>';
+        echo '<div class="cv-section-content">';
+        echo '<div class="cv-item">';
+        echo '<span class="cv-value">';
+        echo $a['certifications'];
+        echo '</span>';
+        echo '</div>';
+        echo '</div>';
+        echo '</div>';
+
+        echo '<div class="cv-reviews">';
+        echo '<div class="cv-section-heading">Reviews</div>';
+        $reviews = $ConnectingDB->query("SELECT * FROM reviews WHERE artisan_id = " . $artisanId);
+        if ($reviews->rowCount() > 0) {
+          while ($r = $reviews->fetch(PDO::FETCH_ASSOC)) {
+            echo '<div class="review">' . $r['review_text'] . '</div>';
+          }
+        } else {
+          echo '<div>No reviews available</div>';
+        }
+
+        echo '</div>';
         echo '<form action="services.php" method="post">';
         echo '<input type="hidden" name="service_id" value=' . $_POST["service_id"] . '>';
         echo '<input type="hidden" name="subservice_id" value=' . $_POST["subservice_id"] . '>';
-        echo '<input type="submit" value="Back">';
+        echo '<input type="submit" value="Back" class="btn">';
         echo '</form>';
         echo '<form method="post" action="devis.php">';
         echo '<input type="hidden" name="service_id" value=' . $_POST["service_id"] . '>';
         echo '<input type="hidden" name="subservice_id" value=' . $_POST["subservice_id"] . '>';
         echo '<input type="hidden" name="artisan_id" value=' . $_POST["artisan_id"] . '>';
         echo '<input type="hidden" name="artisan_full_name" value=' . $a["full_name"] . '>';
-        echo '<input type="submit" value="Choose">';
+        echo '<input type="submit" value="Choose" class="btn">';
         echo '</form>';
+        echo '</div>';
+
+
         ?>
 
 

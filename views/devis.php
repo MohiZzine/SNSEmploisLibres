@@ -79,6 +79,10 @@ require_once("../utils/database.php");
               </select><br>
 
               <!-- Reservation -->
+              <?php
+              $_SESSION['subservice_id'] = $_POST['subservice_id'];
+              $_SESSION['artisan_id'] = $_POST['artisan_id'];
+              ?>
               <input style="display:none;" type="text" id="reservation_date" name="reservation_date" readonly>
               <input style="display:none;" type="text" id="reservation_time" name="reservation_time" readonly>
 

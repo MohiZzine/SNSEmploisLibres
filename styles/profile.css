@@ -1,0 +1,57 @@
+.cv-container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    font-family: Arial, sans-serif;
+}
+
+.cv-heading {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.cv-picture {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.cv-picture img {
+    max-width: 300px;
+    height: auto;
+    border-radius: 50%;
+}
+
+.cv-item {
+    margin-bottom: 10px;
+}
+
+.cv-item .cv-label {
+    font-weight: bold;
+}
+
+.cv-item .cv-value {
+    margin-left: 10px;
+}
+
+.cv-section {
+    margin-bottom: 20px;
+}
+
+.cv-section-heading {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.cv-section-content {
+    margin-left: 20px;
+}
+
+.cv-reviews {
+    margin-top: 20px;
+    font-weight: bold;
+}
+
+.cv-reviews .review {
+    margin-bottom: 5px;
+}
