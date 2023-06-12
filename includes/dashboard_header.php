@@ -160,7 +160,7 @@
               </a>
             </li> -->
           </ul>
-          <div id="navbarNav" class="navbar-collapse justify-content-end px-0 bg-slate-800">
+          <!-- <div id="navbarNav" class="navbar-collapse justify-content-end px-0 bg-slate-800">
             <ul class="navbar-nav flex-row ms-auto align-items-center justify-content-end">
               <a href="../utils/logout.php" target="_blank"
                 class="btn btn-danger">Log Out</a>
@@ -188,6 +188,6 @@
                 </div>
               </li>
             </ul>
-          </div>
+          </div> -->
         </nav>
       </header>
