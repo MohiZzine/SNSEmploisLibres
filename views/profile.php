@@ -72,7 +72,6 @@ require_once("../utils/database.php");
         echo '<input type="hidden" name="artisan_full_name" value=' . $a["full_name"] . '>';
         echo '<input type="submit" value="Choose">';
         echo '</form>';
-
         ?>
 
 

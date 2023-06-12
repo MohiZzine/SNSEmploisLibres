@@ -14,12 +14,12 @@ if (isset($_POST['submit'])) {
     if (!empty($_POST["reservation_date"]) && !empty($_POST["reservation_time"])) {
 
         $user_id = $_SESSION["user_id"];
-        echo $_POST["subservice_id"];
-        echo $_POST["artisan_id"];
+        // echo $_POST["subservice_id"];
+        // echo $_POST["artisan_id"];
         $subservice_id = $_POST["subservice_id"];
         $artisan_id = $_POST["artisan_id"];
         $date_requested = $_POST["reservation_date"] . " " . $_POST["reservation_time"];
-        $request = "INSERT INTO requests(user_id, subservice_id, artisan_id, reservation_date) VALUES ('$user_id', '$subservice_id', '$artisan_id', STR_TO_DATE('$date_requested', '%m/%d/%Y %H:%i:%s'))";
+        $request = "INSERT INTO requests(user_id, subservice_id, artisan_id, reservation_date) VALUES ('$user_id', 1, 1, STR_TO_DATE('$date_requested', '%m/%d/%Y %H:%i:%s'))";
         $stmt = $ConnectingDB->prepare($request);
         $stmt->execute();
 

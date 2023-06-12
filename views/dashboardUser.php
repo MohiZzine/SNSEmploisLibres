@@ -1,5 +1,14 @@
 <?php
 session_start();
+if (!isset($_SESSION['user_id'])) {
+  header('location: ../index.php');
+  exit;
+} else {
+  if ($_SESSION['user_role'] == 'artisan') {
+    header('location: dashboardArtisan.php');
+    exit;
+  }
+}
 require_once("../utils/database.php");
 ?>
 
@@ -26,19 +35,18 @@ require_once("../utils/database.php");
     <!--  Header End -->
     <div class="container-fluid">
 
-      <div class="card-container">
+      <div class="card-container" style="display: grid; grid-template-columns: 1fr 1fr;">
         <?php
         $ConnectingDB = $GLOBALS['pdo'];
         $service = $ConnectingDB->query("SELECT * FROM services");
         while ($s = $service->fetch(PDO::FETCH_ASSOC)) {
           ?>
+          <div class="card m-3 mx-2" style="">
 
-          <div class="card m-3 mx-2">
-
-            <form method="post" action="services.php">
+            <form method="post" action="services.php" style="width: 100%;">
               <input type="hidden" name="service_id" value="<?php echo $s["service_id"]; ?>">
-              <button type="submit" id="service" name="service" class="btn">
-                <?php echo "<h4>" . $s['service_name'] . '</h4></br>' . $s['service_description']; ?>
+              <button type="submit" id="service" name="service" class="btn" style="width: 100%; height: 200px;">
+                <?php echo "<h1>" . $s['service_name'] . "</h1></br>" . "<p style='color: black'>" .$s['service_description'] . '</p>'; ?>
               </button>
             </form>
 
