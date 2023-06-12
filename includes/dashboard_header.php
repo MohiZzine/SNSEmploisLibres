@@ -3,7 +3,7 @@
       <!-- Sidebar scroll-->
       <div>
         <div class="brand-logo d-flex align-items-center justify-content-between">
-          <a href="./index.html" class="text-nowrap logo-img">
+          <a href="<?php echo $_SESSION['user_role'] == 'artisan' ? 'dashboardArtisan.php': 'dashboardUser.php' ?>" class="text-nowrap logo-img">
             <img src="assets/global.png" width="" alt="" />
           </a>
           <div class="close-btn d-xl-none d-block sidebartoggler cursor-pointer" id="sidebarCollapse">
@@ -18,7 +18,7 @@
               <span class="hide-menu">Home</span>
             </li>
             <li class="sidebar-item">
-              <a class="sidebar-link" href="./index.html" aria-expanded="false">
+              <a class="sidebar-link" href="<?php echo $_SESSION['user_role'] == 'artisan' ? 'dashboardArtisan.php': 'dashboardUser.php' ?>" aria-expanded="false">
                 <span>
                   <i class="ti ti-layout-dashboard"></i>
                 </span>
