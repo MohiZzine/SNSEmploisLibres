@@ -15,7 +15,7 @@ require_once("../utils/database.php");
     integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"> -->
     <link rel="stylesheet" href="../styles/dashboard.css" />
     <link rel="stylesheet" href="../styles/cards.css" />
-    <link rel="stylesheet" href="../styles/modal.css" />
+    <link rel="stylesheet" href="../styles/modalServices.css" />
 </head>
 
 <body>
@@ -97,21 +97,6 @@ require_once("../utils/database.php");
                 modal.style.display = "none";
             }
         }
-
-        // var modal = document.getElementById("myModal");
-        // var btn = document.getElementById("subservice");
-        // var span = document.getElementsByClassName("close")[0];
-        // btn.onclick = function () {
-        //     modal.style.display = "block";
-        // }
-        // span.onclick = function () {
-        //     modal.style.display = "none";
-        // }
-        // window.onclick = function (event) {
-        //     if (event.target == modal) {
-        //         modal.style.display = "none";
-        //     }
-        // }
     </script>
     <script src="assets/libs/jquery/dist/jquery.min.js"></script>
     <script src="assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>

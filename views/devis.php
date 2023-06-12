@@ -1,4 +1,4 @@
-<?php 
+<?php
 session_start();
 if (!isset($_SESSION['user_id'])) {
   header('Location: login.php');
@@ -6,23 +6,6 @@ if (!isset($_SESSION['user_id'])) {
 }
 require_once("../utils/database.php");
 
-$ConnectingDB = $GLOBALS['pdo'];
-
-// If the user confirms the request
-if (isset($_POST['confirm'])) {
-
-    $user_id = $_SESSION["user_id"];
-    $subservice_id = $_POST["subservice_id"];
-    $artisan_id = $_POST["artisan_id"];
-
-    $notification = "INSERT INTO requests(user_id, subservice_id, artisan_id) VALUES ('$user_id', '$subservice_id', '$artisan_id')";
-    $stmt = $ConnectingDB->prepare($notification);
-    $stmt->execute();
-
-    if ($stmt) {
-        echo "<script>alert('Request sent!')</script>";
-    }
-}
 ?>
 <!doctype html>
 <html lang="en">
@@ -30,9 +13,17 @@ if (isset($_POST['confirm'])) {
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <link rel="stylesheet"
+    href="//cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.min.css">
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  <script
+    src="//cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.full.min.js"></script>
   <title>SNS Emplois Libres</title>
   <link rel="stylesheet" href="../styles/dashboard.css" />
   <link rel="stylesheet" href="../styles/cards.css" />
+  <link rel="stylesheet" href="../styles/modalDevis.css" />
 </head>
 
 <body>
@@ -41,7 +32,6 @@ if (isset($_POST['confirm'])) {
     data-sidebar-position="fixed" data-header-position="fixed">
     <?php include '../includes/dashboard_header.php'; ?>
     <div class="container-fluid">
-
       <h2 class="text-center p-3 m-2">Devis</h2>
       <h4>What the artisan will do</h4>
 
@@ -56,16 +46,54 @@ if (isset($_POST['confirm'])) {
           <?php echo $artisan_service['price'] ?>
         </p>
       </div>
-      <form method="post" action="">
-        <input type="hidden" name="subservice_id" value="<?php $_POST["subservice_id"]; ?>">
-        <input type="hidden" name="artisan_id" value="<?php $_POST["artisan_id"]; ?>">
-        <button type="submit" name="confirm">Demander une intervention</button>
-      </form>
+      <div class="card">
+        <button name="rdv" id="rdv">Demander une intervention</button>
+        <!-- The Modal -->
+        <div id="Modalrdv" class="modal">
+          <div class="modal-content">
+            <span class="close" style="color:black; position:absolute; right: 11px; top:0;">&times;</span>
+            <form method="post" action="x.php">
+              <input type="hidden" name="subservice_id" value="<?php $_POST["subservice_id"]; ?>">
+              <input type="hidden" name="artisan_id" value="<?php $_POST["artisan_id"]; ?>">
+              <h3>Reservation</h3>
+              <label for="artisan_availability">Availability of
+                <?php echo $_POST["artisan_full_name"]; ?>
+              </label><br>
+
+              <!-- Select -->
+              <select name="artisan_availability" id="artisan_availability">
+                <option value=""></option>
+                <?php
+                $artisan_id = $_POST["artisan_id"];
+                $q = "SELECT * 
+                      FROM availabilities WHERE artisan_id = '$artisan_id'";
+                $availabilities = $ConnectingDB->prepare($q);
+                $availabilities->execute();
+                while ($availability = $availabilities->fetch(PDO::FETCH_ASSOC)) {
+                  ?>
+                  <option
+                    value="<?php echo $availability["days"] . ";" . $availability["start_time"] . ";" . $availability["end_time"]; ?>">
+                    <?php echo $availability["days"] . ", from " . $availability["start_time"] . " to " . $availability["end_time"]; ?>
+                  </option>
+                <?php } ?>
+              </select><br>
+
+              <!-- Reservation -->
+              <input style="display:none;" type="text" id="reservation_date" name="reservation_date" readonly>
+              <input style="display:none;" type="text" id="reservation_time" name="reservation_time" readonly>
+
+              <button type="submit" name="submit" class="btn">Submit</button>
+            </form>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
   </div>
   </div>
   </div>
+
+  <script src="../assets/js/devis.js"></script>
   <script src="assets/libs/jquery/dist/jquery.min.js"></script>
   <script src="assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
   <script src="assets/js/sidebarmenu.js"></script>

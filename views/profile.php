@@ -34,30 +34,29 @@ require_once("../utils/database.php");
         //join 3 tables
         //$artisan = $ConnectingDB->query("SELECT * FROM artisans where artisan_id = '$artisanId'");
         $artisan = $ConnectingDB->query("SELECT * FROM artisans JOIN users ON artisans.user_id = users.user_id  WHERE artisan_id =" . $artisanId);
+        $a = $artisan->fetch(PDO::FETCH_ASSOC);
         echo '<table class="artisan-table">';
-        while ($a = $artisan->fetch(PDO::FETCH_ASSOC)) {
-          echo '<tr><th colspan="2">Artisan Information</th></tr>';
-          echo '<tr><td>Full name:</td><td>' . $a['full_name'] . '</td></tr>';
-          if ($a["profile_picture"]) {
-            echo '<tr><td>Profile picture:</td><td>' .
-              '<img src="' . $a['profile_picture'] . '" alt="artisan">' . '</td></tr>';
-          } else {
-            echo '<tr><td>Profile picture:</td><td>' . '<img src="../assets/user.jpg" alt="artisan">' . '</td></tr>';
-          }
-          echo '<tr><td>Email:</td><td>' . $a['email'] . '</td></tr>';
-          echo '<tr><td>Phone number:</td><td>' . $a['phone_number'] . '</td></tr>';
-          echo '<tr><td>Company name:</td><td>' . $a['company_name'] . '</td></tr>';
-          echo '<tr><td>Company address:</td><td>' . $a['company_address'] . '</td></tr>';
-          echo '<tr><td>Description:</td><td>' . $a['description'] . '</td></tr>';
-          echo '<tr><td>Certifications:</td><td>' . $a['certifications'] . '</td></tr>';
-          echo '<tr><td>Location:</td><td>' . $a['location'] . '</td></tr>';
+        echo '<tr><th colspan="2">Artisan Information</th></tr>';
+        echo '<tr><td>Full name:</td><td>' . $a['full_name'] . '</td></tr>';
+        if ($a["profile_picture"]) {
+          echo '<tr><td>Profile picture:</td><td>' .
+            '<img src="' . $a['profile_picture'] . '" alt="artisan">' . '</td></tr>';
+        } else {
+          echo '<tr><td>Profile picture:</td><td>' . '<img src="../assets/user.jpg" alt="artisan">' . '</td></tr>';
+        }
+        echo '<tr><td>Email:</td><td>' . $a['email'] . '</td></tr>';
+        echo '<tr><td>Phone number:</td><td>' . $a['phone_number'] . '</td></tr>';
+        echo '<tr><td>Company name:</td><td>' . $a['company_name'] . '</td></tr>';
+        echo '<tr><td>Company address:</td><td>' . $a['company_address'] . '</td></tr>';
+        echo '<tr><td>Description:</td><td>' . $a['description'] . '</td></tr>';
+        echo '<tr><td>Certifications:</td><td>' . $a['certifications'] . '</td></tr>';
+        echo '<tr><td>Location:</td><td>' . $a['location'] . '</td></tr>';
 
-          $reviews = $ConnectingDB->query("SELECT * FROM reviews WHERE artisan_id = 1");
-          if ($reviews->rowCount() > 0) {
-            echo '<tr><th colspan="2">Reviews</th></tr>';
-            while ($r = $reviews->fetch(PDO::FETCH_ASSOC)) {
-              echo '<tr class="review"><td colspan="2">' . $r['review_text'] . '</td></tr>';
-            }
+        $reviews = $ConnectingDB->query("SELECT * FROM reviews WHERE artisan_id = 1");
+        if ($reviews->rowCount() > 0) {
+          echo '<tr><th colspan="2">Reviews</th></tr>';
+          while ($r = $reviews->fetch(PDO::FETCH_ASSOC)) {
+            echo '<tr class="review"><td colspan="2">' . $r['review_text'] . '</td></tr>';
           }
         }
         echo '</table>';
@@ -70,6 +69,7 @@ require_once("../utils/database.php");
         echo '<input type="hidden" name="service_id" value=' . $_POST["service_id"] . '>';
         echo '<input type="hidden" name="subservice_id" value=' . $_POST["subservice_id"] . '>';
         echo '<input type="hidden" name="artisan_id" value=' . $_POST["artisan_id"] . '>';
+        echo '<input type="hidden" name="artisan_full_name" value=' . $a["full_name"] . '>';
         echo '<input type="submit" value="Choose">';
         echo '</form>';
 

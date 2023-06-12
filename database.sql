@@ -54,7 +54,7 @@ CREATE TABLE IF NOT EXISTS artisan_services (
 CREATE TABLE IF NOT EXISTS availabilities (
   availability_id INT AUTO_INCREMENT,
   artisan_id INT,
-  date DATE,
+  days ENUM('Mondays', 'Tuesdays',  'Wednesdays', 'Thursdays', 'Fridays', 'Saturdays', 'Sundays'),
   start_time TIME,
   end_time TIME,
   PRIMARY KEY (availability_id),
@@ -67,6 +67,7 @@ CREATE TABLE IF NOT EXISTS requests (
   subservice_id INT,
   artisan_id INT,
   date_requested TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  reservation_date datetime,
   status VARCHAR(10) NOT NULL DEFAULT 'pending',
   PRIMARY KEY (request_id),
   FOREIGN KEY (user_id) REFERENCES users(user_id),
@@ -131,7 +132,7 @@ CREATE TABLE IF NOT EXISTS Reviews (
   review_id INT AUTO_INCREMENT,
   user_id INT,
   artisan_id INT,
-  rating INT NOT NULL,
+  rating ENUM ('1', '2', '3', '4', '5') NOT NULL,
   review_text TEXT,
   date_reviewed TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (review_id),
@@ -206,21 +207,24 @@ INSERT INTO artisan_services (artisan_id, subservice_id, price) VALUES
 (5, 15, 480);
 
 -- Populating the availabilities table
-INSERT INTO availabilities (artisan_id, date, start_time, end_time) VALUES
-(1, '2023-06-12', '09:00:00', '17:00:00'),
-(2, '2023-06-13', '10:00:00', '18:00:00'),
-(3, '2023-06-14', '08:00:00', '16:00:00'),
-(4, '2023-06-15', '11:00:00', '19:00:00'),
-(5, '2023-06-16', '09:30:00', '17:30:00');
+INSERT INTO availabilities (artisan_id, days, start_time, end_time) VALUES
+(1, 'Mondays', '09:00:00', '17:00:00'),
+(1, 'Tuesdays', '11:00:00', '18:00:00'),
+(1, 'Fridays', '09:00:00', '17:00:00'),
+(2, 'Tuesdays', '10:00:00', '18:00:00'),
+(2, 'Sundays', '10:00:00', '18:00:00'),
+(3, 'Wednesdays', '08:00:00', '16:00:00'),
+(4, 'Thursdays', '11:00:00', '19:00:00'),
+(5, 'Fridays', '09:00:00', '17:00:00');
 
 -- Populating the requests table
-INSERT INTO requests (user_id, subservice_id, artisan_id) VALUES
-(6, 1, 1),
-(6, 2, 1),
-(7, 10, 4),
-(10, 9, 3),
-(8, 5, 2),
-(9, 3, 1);
+INSERT INTO requests (user_id, subservice_id, artisan_id, reservation_date) VALUES
+(6, 1, 1, STR_TO_DATE('2023-06-13 16:00:00', '%m/%d/%Y %H:%i:%s')),
+(6, 2, 1, STR_TO_DATE('2023-06-13 16:00:00', '%m/%d/%Y %H:%i:%s')),
+(7, 10, 4, STR_TO_DATE('2023-06-13 16:00:00', '%m/%d/%Y %H:%i:%s')),
+(10, 9, 3, STR_TO_DATE('2023-06-13 16:00:00', '%m/%d/%Y %H:%i:%s')),
+(8, 5, 2, STR_TO_DATE('2023-06-13 16:00:00', '%m/%d/%Y %H:%i:%s')),
+(9, 3, 1, STR_TO_DATE('2023-06-13 16:00:00', '%m/%d/%Y %H:%i:%s'));
 
 -- Populating the quotes table
 INSERT INTO quotes (artisan_id, request_id, quote_amount, quote_description) VALUES
