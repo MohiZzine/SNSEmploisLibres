@@ -30,7 +30,6 @@ if (isset($_GET['error'])) {
         <?php endif; ?>
       <div id="recovery" class="flex items-center justify-between gap-4 text-center">
         <p class="text-sm mx-6"><a href="views/register.php" class="hover:cursor-pointer hover:text-gray-500">Sign Up</a></p>
-        <p class="text-sm mx-6"><a href="views/forgot_password.php" class="hover:cursor-pointer hover:text-gray-500">Forgot Password</a></p>
       </div>
     </form>
   </section>
