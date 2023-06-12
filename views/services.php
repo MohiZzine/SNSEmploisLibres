@@ -26,7 +26,7 @@ require_once("../utils/database.php");
         <!--  Header End -->
         <div class="container-fluid">
 
-            <div class="card-container" style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px;">
+            <div class="card-container" style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px;">
 
                 <?php
                 $ConnectingDB = $GLOBALS['pdo'];
@@ -40,7 +40,7 @@ require_once("../utils/database.php");
 
                     <div class="card">
 
-                        <button name="subservice" class="btn subservice" style="width: 100%; gap: 4px;">
+                        <button name="subservice" class="btn subservice" style="width: 100%; height:100%; gap: 4px;">
                             <?php echo "<h1>" . $s['subservice_name'] . '</h1></br>' . $s['subservice_description']; ?>
                         </button>
 
