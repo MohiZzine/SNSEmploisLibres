@@ -224,22 +224,4 @@ class User
       }
     }
   }
-
-  // public function change_role($new_role)
-  // {
-  //   $sql = "UPDATE users SET role = :role WHERE user_id = :user_id";
-
-  //   $stmt = $this->pdo->prepare($sql);
-
-  //   $new_role = htmlspecialchars(strip_tags($new_role));
-
-  //   try {
-  //     $stmt->execute(['role' => $new_role, 'user_id' => $this->user_id]);
-  //     $this->set_role($new_role);
-  //     return ['reset' => true, 'message' => 'Role changed successfully!'];
-  //   } catch (PDOException $e) {
-  //     // The role is not required to be unique so we don't need to check for 23000 error code
-  //     return ['reset' => false, 'message' => 'An Error has occurred, try again later!'];
-  //   }
-  // }
 }
