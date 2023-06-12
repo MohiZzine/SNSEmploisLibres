@@ -129,6 +129,7 @@ require_once("../utils/database.php");
         }
 
         echo '</div>';
+        echo "<div class='flex flex-column align-items-center justify-content-around'>";
         echo '<form action="services.php" method="post">';
         echo '<input type="hidden" name="service_id" value=' . $_POST["service_id"] . '>';
         echo '<input type="hidden" name="subservice_id" value=' . $_POST["subservice_id"] . '>';
@@ -141,6 +142,7 @@ require_once("../utils/database.php");
         echo '<input type="hidden" name="artisan_full_name" value=' . $a["full_name"] . '>';
         echo '<input type="submit" value="Choose" class="btn">';
         echo '</form>';
+        echo "</div>";
         echo '</div>';
 
 

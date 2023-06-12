@@ -92,10 +92,6 @@ require_once("../utils/database.php");
     </div>
   </div>
   </div>
-  </div>
-  </div>
-  </div>
-  </div>
   <script src="../assets/libs/jquery/dist/jquery.min.js"></script>
   <script src="../assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
   <script src="../assets/js/sidebarmenu.js"></script>

@@ -41,11 +41,11 @@
           </a>
         </li>
         <li class="sidebar-item">
-          <a class="sidebar-link" href="./authentication-register.html" aria-expanded="false">
+          <a class="sidebar-link" href="reviews.php" aria-expanded="false">
             <span>
               <i class="ti ti-user-plus"></i>
             </span>
-            <span class="hide-menu">Register</span>
+            <span class="hide-menu">Your Reviews</span>
           </a>
         </li>
         <!-- <li class="nav-small-cap">
